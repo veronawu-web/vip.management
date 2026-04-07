@@ -5,9 +5,11 @@ let aiInstance: GoogleGenAI | null = null;
 
 function getAI() {
   if (!aiInstance) {
-    const apiKey = process.env.GEMINI_API_KEY;
-    if (!apiKey || apiKey === 'undefined') {
-      throw new Error("GEMINI_API_KEY is missing. Please set it in your environment or GitHub Secrets.");
+    // Check multiple possible locations for the API key
+    const apiKey = process.env.GEMINI_API_KEY || import.meta.env.VITE_GEMINI_API_KEY;
+    
+    if (!apiKey || apiKey === 'undefined' || apiKey === '') {
+      throw new Error("GEMINI_API_KEY is missing. Please set it in your GitHub Secrets as GEMINI_API_KEY.");
     }
     aiInstance = new GoogleGenAI({ apiKey });
   }
