@@ -1,13 +1,25 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { VIPUser } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
+let aiInstance: GoogleGenAI | null = null;
+
+function getAI() {
+  if (!aiInstance) {
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey || apiKey === 'undefined') {
+      throw new Error("GEMINI_API_KEY is missing. Please set it in your environment or GitHub Secrets.");
+    }
+    aiInstance = new GoogleGenAI({ apiKey });
+  }
+  return aiInstance;
+}
 
 export async function analyzeVIPPersonality(user: VIPUser): Promise<{
   personalitySummary: string;
   avatarPrompt: string;
   traits: string[];
 }> {
+  const ai = getAI();
   const prompt = `
     Analyze the following VIP customer's conversation snippets and existing traits to create a deeper personality profile and a visual description for a 3D avatar.
     
@@ -46,6 +58,7 @@ export async function analyzeVIPPersonality(user: VIPUser): Promise<{
 }
 
 export async function generateVIPAvatar(prompt: string): Promise<string> {
+  const ai = getAI();
   const response = await ai.models.generateContent({
     model: "gemini-2.5-flash-image",
     contents: {
