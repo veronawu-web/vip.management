@@ -28,6 +28,81 @@ export default function App() {
   const [selectedVip, setSelectedVip] = useState<VIPUser | null>(null);
   const [isGenerating, setIsGenerating] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === '1159') {
+      setIsAuthenticated(true);
+      setError('');
+    } else {
+      setError('密碼錯誤，請重新輸入');
+      setPassword('');
+    }
+  };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-[#F8F9FC] flex items-center justify-center p-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="w-full max-w-md bg-white rounded-[2.5rem] p-10 shadow-2xl shadow-indigo-100/50 border border-indigo-50"
+        >
+          <div className="flex flex-col items-center mb-8">
+            <div className="w-16 h-16 rounded-2xl bg-indigo-600 flex items-center justify-center text-white shadow-xl shadow-indigo-200 mb-4">
+              <Users size={32} />
+            </div>
+            <h1 className="text-2xl font-black text-gray-900 tracking-tight">VIP Insights</h1>
+            <p className="text-sm text-gray-400 font-medium uppercase tracking-widest mt-1">Internal Access Only</p>
+          </div>
+
+          <form onSubmit={handleLogin} className="space-y-6">
+            <div>
+              <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 ml-1">
+                請輸入存取密碼
+              </label>
+              <input 
+                type="password" 
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••"
+                className="w-full px-6 py-4 bg-gray-50 border-2 border-transparent focus:bg-white focus:border-indigo-200 focus:ring-4 focus:ring-indigo-50 rounded-2xl transition-all outline-none text-center text-2xl tracking-[1em] font-mono"
+                autoFocus
+              />
+              {error && (
+                <motion.p 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-red-500 text-xs font-bold mt-3 text-center"
+                >
+                  {error}
+                </motion.p>
+              )}
+            </div>
+
+            <button 
+              type="submit"
+              className="w-full py-4 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold shadow-lg shadow-indigo-200 transition-all active:scale-95 flex items-center justify-center gap-2"
+            >
+              登入系統
+              <ChevronRight size={18} />
+            </button>
+          </form>
+
+          <div className="mt-10 pt-8 border-t border-gray-50 flex flex-col items-center gap-2 text-[10px] text-gray-300 font-bold uppercase tracking-tighter">
+            <div className="flex items-center gap-1">
+              <Sparkles size={12} />
+              <span>AI-Powered Insights Engine</span>
+            </div>
+            <span>© 2026 VIP Management System</span>
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
 
   const filteredVips = vips.filter(vip => 
     vip.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
