@@ -280,6 +280,10 @@ function VIPCard({
             alt={vip.name} 
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
+            onError={(e) => {
+              e.currentTarget.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(vip.name)}&background=random&color=fff&size=600`;
+            }}
+            loading="lazy"
           />
         ) : (
           <div className="flex flex-col items-center gap-2 text-gray-300">
@@ -355,6 +359,9 @@ function VIPDetail({
                 alt={vip.name} 
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
+                onError={(e) => {
+                  e.currentTarget.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(vip.name)}&background=random&color=fff&size=600`;
+                }}
               />
             ) : (
               <div className="w-full h-full flex flex-col items-center justify-center text-gray-200">
@@ -433,18 +440,6 @@ function VIPDetail({
                 "{vip.bio || 'Generate insights to see a detailed AI-powered personality summary based on customer interactions.'}"
               </p>
             </section>
-
-            {vip.avatarDescription && (
-              <section>
-                <div className="flex items-center gap-2 mb-4 text-gray-900">
-                  <Zap size={18} className="text-indigo-600" />
-                  <h4 className="font-bold uppercase tracking-widest text-xs">AI Avatar Concept (3D Style)</h4>
-                </div>
-                <div className="p-5 rounded-2xl bg-gray-900 text-gray-300 text-sm font-mono leading-relaxed border border-gray-800">
-                  {vip.avatarDescription}
-                </div>
-              </section>
-            )}
 
             <section>
               <div className="flex items-center gap-2 mb-4 text-gray-900">
