@@ -33,7 +33,7 @@ export async function analyzeVIPPersonality(user: VIPUser): Promise<{
     
     Return a JSON object with:
     1. personalitySummary: A 2-sentence professional summary of their communication style and values.
-    2. avatarPrompt: A detailed prompt for an image generator to create a 3D character avatar. The subject is a male aged between 30-55 years old (an "uncle" or "big brother" figure). The style should be "high-quality 3D clay-like character, rounded features but with mature facial characteristics (like subtle stubble, glasses, or refined hairstyles), expressive, vibrant colors, clean studio lighting, solid pastel background, high quality 3D render". Include specific clothing (like a polo shirt, a casual blazer, or a tech vest) or accessories (like a high-end watch, a camera, or a coffee cup) that match their personality and age.
+    2. avatarPrompt: A detailed prompt for an image generator to create a 3D character avatar. The style MUST be "3D stylized vinyl toy character, high-quality 3D render, clay-like texture, rounded and smooth features, large expressive eyes, clean studio lighting, solid neutral light gray background". The character should be a bust-up portrait. Include specific accessories (like a colorful beanie, a hoodie, a baseball cap, or thick-rimmed glasses) that match their personality. The overall vibe is modern, playful, and high-end 3D digital art, similar to designer toy collections.
     3. traits: 3-5 refined personality keywords.
   `;
 
