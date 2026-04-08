@@ -64,31 +64,9 @@ export async function analyzeVIPPersonality(user: VIPUser): Promise<{
 }
 
 export async function generateVIPAvatar(prompt: string): Promise<string> {
-  const ai = getAI();
-  try {
-    const response = await ai.models.generateContent({
-      model: "gemini-3.1-flash-image-preview",
-      contents: {
-        parts: [
-          { text: prompt }
-        ]
-      },
-      config: {
-        imageConfig: {
-          aspectRatio: "1:1"
-        }
-      }
-    });
-
-    for (const part of response.candidates?.[0]?.content?.parts || []) {
-      if (part.inlineData) {
-        return `data:image/png;base64,${part.inlineData.data}`;
-      }
-    }
-  } catch (error) {
-    console.error("Image generation failed:", error);
-    throw error;
-  }
-  
-  throw new Error("No image generated");
+  // Use Pollinations AI as a reliable fallback for image generation
+  // to avoid 403 Permission Denied errors with Gemini image models in some regions
+  const encodedPrompt = encodeURIComponent(prompt);
+  const seed = Math.floor(Math.random() * 100000);
+  return `https://image.pollinations.ai/prompt/${encodedPrompt}?width=600&height=600&nologo=true&seed=${seed}`;
 }

@@ -173,6 +173,18 @@ export default function App() {
           </div>
 
           <div className="flex items-center gap-3">
+            <button 
+              onClick={async () => {
+                for (const vip of vips) {
+                  await handleGenerateInsights(vip);
+                }
+              }}
+              disabled={!!isGenerating}
+              className="hidden md:flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-300 text-white text-xs font-bold rounded-xl shadow-lg shadow-indigo-100 transition-all active:scale-95"
+            >
+              <Sparkles size={14} className={cn(isGenerating && "animate-spin")} />
+              {isGenerating ? 'AI 批量生成中...' : '一鍵生成所有 AI 畫像'}
+            </button>
             <div className="relative flex-1 max-w-md">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
               <input 
@@ -428,6 +440,14 @@ function VIPDetail({
                 </span>
               ))}
             </div>
+            <button 
+              onClick={onGenerate}
+              disabled={isGenerating}
+              className="mt-4 flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-300 text-white text-xs font-bold rounded-xl shadow-lg shadow-indigo-100 transition-all active:scale-95"
+            >
+              <RefreshCw size={14} className={cn(isGenerating && "animate-spin")} />
+              {isGenerating ? 'AI 生成中...' : '重新生成 AI 虛擬形象'}
+            </button>
           </div>
 
           <div className="space-y-8">
