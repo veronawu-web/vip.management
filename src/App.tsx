@@ -460,6 +460,18 @@ function VIPDetail({
               </p>
             </section>
 
+            {vip.avatarDescription && (
+              <section>
+                <div className="flex items-center gap-2 mb-4 text-gray-900">
+                  <Zap size={18} className="text-indigo-600" />
+                  <h4 className="font-bold uppercase tracking-widest text-xs">AI Avatar Concept (3D Style)</h4>
+                </div>
+                <div className="p-5 rounded-2xl bg-gray-900 text-gray-300 text-sm font-mono leading-relaxed border border-gray-800">
+                  {vip.avatarDescription}
+                </div>
+              </section>
+            )}
+
             <section>
               <div className="flex items-center gap-2 mb-4 text-gray-900">
                 <MessageSquare size={18} className="text-indigo-600" />

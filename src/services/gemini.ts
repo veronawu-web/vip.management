@@ -33,7 +33,10 @@ export async function analyzeVIPPersonality(user: VIPUser): Promise<{
     
     Return a JSON object with:
     1. personalitySummary: A 2-sentence professional summary of their communication style and values.
-    2. avatarPrompt: A detailed prompt for an image generator to create a 3D character avatar. The style MUST be "3D stylized vinyl toy character, high-quality 3D render, clay-like texture, rounded and smooth features, large expressive eyes, clean studio lighting, solid neutral light gray background". The character should be a bust-up portrait. Include specific accessories (like a colorful beanie, a hoodie, a baseball cap, or thick-rimmed glasses) that match their personality. The overall vibe is modern, playful, and high-end 3D digital art, similar to designer toy collections.
+    2. avatarPrompt: A detailed prompt for an image generator to create a 3D character avatar. 
+       STRICT STYLE REQUIREMENT: The description MUST follow this exact style: "3D stylized vinyl toy character, high-quality 3D render, clay-like texture, rounded and smooth features, large expressive eyes, clean studio lighting, solid neutral light gray background".
+       EXAMPLE PROMPT: "3D stylized vinyl toy character of a mature man with a kind smile, wearing a yellow beanie and a black oversized hoodie, high-quality 3D render, clay-like texture, rounded and smooth features, large expressive eyes, clean studio lighting, solid neutral light gray background."
+       The character should be a bust-up portrait. Include specific accessories (like a colorful beanie, a hoodie, a baseball cap, or thick-rimmed glasses) that match their personality.
     3. traits: 3-5 refined personality keywords.
   `;
 
