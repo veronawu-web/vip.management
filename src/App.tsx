@@ -140,7 +140,8 @@ export default function App() {
       }
     } catch (error) {
       console.error("Failed to generate insights:", error);
-      alert("AI generation failed. Please check your API key or try again later.");
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      alert(`AI 產生失敗：\n${errorMessage}\n\n請檢查 GitHub Secrets 中的 GEMINI_API_KEY 是否設定正確，或稍後再試。`);
     } finally {
       setIsGenerating(null);
     }

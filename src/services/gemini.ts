@@ -5,11 +5,12 @@ let aiInstance: GoogleGenAI | null = null;
 
 function getAI() {
   if (!aiInstance) {
-    // Check multiple possible locations for the API key
-    const apiKey = process.env.GEMINI_API_KEY || import.meta.env.VITE_GEMINI_API_KEY;
+    // Rely on process.env.GEMINI_API_KEY which is defined in vite.config.ts
+    const apiKey = process.env.GEMINI_API_KEY;
     
     if (!apiKey || apiKey === 'undefined' || apiKey === '') {
-      throw new Error("GEMINI_API_KEY is missing. Please set it in your GitHub Secrets as GEMINI_API_KEY.");
+      console.error("API Key Check Failed. process.env.GEMINI_API_KEY is empty.");
+      throw new Error("GEMINI_API_KEY is missing. Please ensure you have added it to GitHub Secrets.");
     }
     aiInstance = new GoogleGenAI({ apiKey });
   }
