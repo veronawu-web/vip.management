@@ -28,7 +28,7 @@ export const MOCK_VIPS: VIPUser[] = [
       "妳的努力，我看得出來，是我少數會解鎖的限動"
     ],
     bio: "48歲成熟大叔。Level 95 頂級大戶。極度重視效率與個人權益，溝通風格直接且帶有強烈主導權。對認可的主播會給予極高額度的支持，但對服務品質要求極其嚴苛。",
-    avatarUrl: "https://images.unsplash.com/photo-1640951613483-e3c74e387f95?q=80&w=600&h=600&auto=format&fit=crop&v=2",
+    avatarUrl: "https://pollinations.ai/p/3D%20stylized%20vinyl%20toy%20character%20of%20a%20sophisticated%20wealthy%20man%20with%20sharp%20undercut%20hairstyle%20wearing%20a%20black%20luxury%20turtleneck%20and%20thick-rimmed%20gold-framed%20glasses%20high-quality%203D%20render%20clay-like%20texture%20rounded%20and%20smooth%20features%20large%20expressive%20eyes%20clean%20studio%20lighting%20solid%20neutral%20light%20gray%20background?width=600&height=600&seed=1",
     avatarDescription: "3D stylized vinyl toy character of a sophisticated, wealthy man with a sharp undercut hairstyle, wearing a black luxury turtleneck and thick-rimmed gold-framed glasses, high-quality 3D render, clay-like texture, rounded and smooth features, large expressive eyes with a discerning look, clean studio lighting, solid neutral light gray background.",
   },
   {
@@ -46,7 +46,7 @@ export const MOCK_VIPS: VIPUser[] = [
       "新的自媒體方案你有打算要怎麼做嗎？"
     ],
     bio: "52歲資深大叔。Level 100 資深玩家。性格溫暖且具備分析頭腦，常扮演主播的「軍師」角色，協助規劃業績與應對策略。非常看重主播的成長與努力。",
-    avatarUrl: "https://images.unsplash.com/photo-1640952131659-49a06dd90ad2?q=80&w=600&h=600&auto=format&fit=crop&v=2",
+    avatarUrl: "https://pollinations.ai/p/3D%20stylized%20vinyl%20toy%20character%20of%20a%20wise%20mentor%20figure%20wearing%20a%20cozy%20oversized%20gray%20cardigan%20and%20a%20soft%20yellow%20beanie%20high-quality%203D%20render%20clay-like%20texture%20rounded%20and%20smooth%20features%20large%20kind%20eyes%20warm%20studio%20lighting%20solid%20neutral%20light%20gray%20background?width=600&height=600&seed=2",
     avatarDescription: "3D stylized vinyl toy character of a wise mentor figure, wearing a cozy oversized gray cardigan and a soft yellow beanie, high-quality 3D render, clay-like texture, rounded and smooth features, large kind eyes, warm studio lighting, solid neutral light gray background.",
   },
   {
@@ -64,7 +64,7 @@ export const MOCK_VIPS: VIPUser[] = [
       "希望大家理解金金，不要因為我的事而對金金有所偏見。"
     ],
     bio: "35歲深情大哥哥。情感極度投入的客戶。將平台互動視為真實情感關係，容易受情緒波動影響。需要大量的關注與情感確認，對主播有極高的忠誠度與依賴感。",
-    avatarUrl: "https://images.unsplash.com/photo-1628260412297-a3377e45006f?q=80&w=600&h=600&auto=format&fit=crop&v=2",
+    avatarUrl: "https://pollinations.ai/p/3D%20stylized%20vinyl%20toy%20character%20of%20a%20sensitive%20young%20man%20wearing%20a%20blue%20hoodie%20with%20the%20hood%20up%20high-quality%203D%20render%20clay-like%20texture%20rounded%20and%20smooth%20features%20large%20expressive%20eyes%20showing%20vulnerability%20soft%20studio%20lighting%20solid%20neutral%20light%20gray%20background?width=600&height=600&seed=3",
     avatarDescription: "3D stylized vinyl toy character of a sensitive young man, wearing a blue hoodie with the hood up, high-quality 3D render, clay-like texture, rounded and smooth features, large expressive eyes showing vulnerability, soft studio lighting, solid neutral light gray background.",
   },
   {
@@ -82,7 +82,7 @@ export const MOCK_VIPS: VIPUser[] = [
       "真的平台線下活動第一次看到參加人數破百越來越熱鬧了。"
     ],
     bio: "42歲熱血大叔。線下活動愛好者。熱衷於參加官方同樂會，對平台社群活動有極高參與度。消費力穩定，喜歡與主播在現實活動中互動。",
-    avatarUrl: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=600&h=600&auto=format&fit=crop&v=2",
+    avatarUrl: "https://pollinations.ai/p/3D%20stylized%20vinyl%20toy%20character%20of%20an%20energetic%20fan%20wearing%20a%20vibrant%20red%20baseball%20cap%20and%20a%20sporty%20jacket%20high-quality%203D%20render%20clay-like%20texture%20rounded%20and%20smooth%20features%20large%20excited%20eyes%20bright%20studio%20lighting%20solid%20neutral%20light%20gray%20background?width=600&height=600&seed=4",
     avatarDescription: "3D stylized vinyl toy character of an energetic fan, wearing a vibrant red baseball cap and a sporty jacket, high-quality 3D render, clay-like texture, rounded and smooth features, large excited eyes, bright studio lighting, solid neutral light gray background.",
   },
   {
@@ -100,7 +100,7 @@ export const MOCK_VIPS: VIPUser[] = [
       "我剛上線而已，你變態喔。"
     ],
     bio: "38歲隨興大哥哥。社交目的明確的客戶。喜歡約主播線下聚餐，溝通風格幽默且隨興。對特定食物有強烈偏好（如：不吃火鍋），重視線下的真實社交體驗。",
-    avatarUrl: "https://images.unsplash.com/photo-1541562232579-512a21360020?q=80&w=600&h=600&auto=format&fit=crop&v=2",
+    avatarUrl: "https://pollinations.ai/p/3D%20stylized%20vinyl%20toy%20character%20of%20a%20cool%20casual%20guy%20wearing%20a%20stylish%20bucket%20hat%20and%20a%20simple%20white%20tee%20high-quality%203D%20render%20clay-like%20texture%20rounded%20and%20smooth%20features%20large%20confident%20eyes%20clean%20studio%20lighting%20solid%20neutral%20light%20gray%20background?width=600&height=600&seed=5",
     avatarDescription: "3D stylized vinyl toy character of a cool casual guy, wearing a stylish bucket hat and a simple white tee, high-quality 3D render, clay-like texture, rounded and smooth features, large confident eyes, clean studio lighting, solid neutral light gray background.",
   }
 ];

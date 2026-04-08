@@ -317,23 +317,6 @@ function VIPCard({
           </span>
         )}
       </div>
-
-      {/* AI Analysis Button */}
-      <button 
-        onClick={(e) => {
-          e.stopPropagation();
-          onGenerate();
-        }}
-        disabled={isGenerating}
-        className="mt-4 w-full py-2.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-600 text-xs font-bold flex items-center justify-center gap-2 transition-colors disabled:opacity-50"
-      >
-        {isGenerating ? (
-          <RefreshCw size={14} className="animate-spin" />
-        ) : (
-          <Sparkles size={14} />
-        )}
-        {isGenerating ? '分析中...' : 'AI 性格分析'}
-      </button>
     </motion.div>
   );
 }
@@ -409,15 +392,6 @@ function VIPDetail({
               <span className="text-sm font-bold text-gray-900">{vip.lastActive}</span>
             </div>
           </div>
-
-          <button 
-            onClick={onGenerate}
-            disabled={isGenerating}
-            className="mt-8 w-full py-4 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold flex items-center justify-center gap-3 shadow-lg shadow-indigo-200 transition-all active:scale-95 disabled:opacity-50"
-          >
-            {isGenerating ? <RefreshCw size={20} className="animate-spin" /> : <Sparkles size={20} />}
-            {isGenerating ? 'AI 分析中...' : '重新生成 AI 分析'}
-          </button>
         </div>
 
         {/* Right Side: Details & Conversations */}
