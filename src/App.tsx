@@ -117,10 +117,16 @@ export default function App() {
       // 1. Analyze personality and get avatar prompt
       const analysis = await analyzeVIPPersonality(vip);
       
-      // 2. Generate avatar image
-      const avatarUrl = await generateVIPAvatar(analysis.avatarPrompt);
+      // 2. Try to generate avatar image (optional)
+      let avatarUrl = vip.avatarUrl;
+      try {
+        avatarUrl = await generateVIPAvatar(analysis.avatarPrompt);
+      } catch (imgError) {
+        console.warn("Avatar image generation failed, skipping image update:", imgError);
+        // We don't alert here to keep the experience smooth
+      }
       
-      // 3. Update VIP data
+      // 3. Update VIP data (always update text insights)
       setVips(prev => prev.map(v => v.id === vip.id ? {
         ...v,
         personalityTraits: analysis.traits,
@@ -129,7 +135,7 @@ export default function App() {
         avatarDescription: analysis.avatarPrompt
       } : v));
 
-      // Update selected VIP if it's the one being generated
+      // Update selected VIP
       if (selectedVip?.id === vip.id) {
         setSelectedVip(prev => prev ? {
           ...prev,
@@ -138,10 +144,14 @@ export default function App() {
           avatarUrl: avatarUrl
         } : null);
       }
+
+      if (!avatarUrl && !vip.avatarUrl) {
+        alert("文字分析已完成！\n\n提示：圖片生成失敗（通常是因為 Google API 的地區或額度限制），但您仍可查看性格分析。");
+      }
     } catch (error) {
       console.error("Failed to generate insights:", error);
       const errorMessage = error instanceof Error ? error.message : String(error);
-      alert(`AI 產生失敗：\n${errorMessage}\n\n請檢查 GitHub Secrets 中的 GEMINI_API_KEY 是否設定正確，或稍後再試。`);
+      alert(`AI 產生失敗：\n${errorMessage}\n\n請檢查 GitHub Secrets 中的 GEMINI_API_KEY 是否設定正確。`);
     } finally {
       setIsGenerating(null);
     }

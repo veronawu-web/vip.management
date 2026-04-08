@@ -62,24 +62,29 @@ export async function analyzeVIPPersonality(user: VIPUser): Promise<{
 
 export async function generateVIPAvatar(prompt: string): Promise<string> {
   const ai = getAI();
-  const response = await ai.models.generateContent({
-    model: "gemini-2.5-flash-image",
-    contents: {
-      parts: [
-        { text: prompt }
-      ]
-    },
-    config: {
-      imageConfig: {
-        aspectRatio: "1:1"
+  try {
+    const response = await ai.models.generateContent({
+      model: "gemini-3.1-flash-image-preview",
+      contents: {
+        parts: [
+          { text: prompt }
+        ]
+      },
+      config: {
+        imageConfig: {
+          aspectRatio: "1:1"
+        }
+      }
+    });
+
+    for (const part of response.candidates?.[0]?.content?.parts || []) {
+      if (part.inlineData) {
+        return `data:image/png;base64,${part.inlineData.data}`;
       }
     }
-  });
-
-  for (const part of response.candidates?.[0]?.content?.parts || []) {
-    if (part.inlineData) {
-      return `data:image/png;base64,${part.inlineData.data}`;
-    }
+  } catch (error) {
+    console.error("Image generation failed:", error);
+    throw error;
   }
   
   throw new Error("No image generated");
