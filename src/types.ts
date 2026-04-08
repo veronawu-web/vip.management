@@ -28,6 +28,7 @@ export const MOCK_VIPS: VIPUser[] = [
       "妳的努力，我看得出來，是我少數會解鎖的限動"
     ],
     bio: "48歲成熟大叔。Level 95 頂級大戶。極度重視效率與個人權益，溝通風格直接且帶有強烈主導權。對認可的主播會給予極高額度的支持，但對服務品質要求極其嚴苛。",
+    avatarUrl: "https://picsum.photos/seed/jmarx/600/600",
   },
   {
     id: 'aa6655891',
@@ -44,6 +45,7 @@ export const MOCK_VIPS: VIPUser[] = [
       "新的自媒體方案你有打算要怎麼做嗎？"
     ],
     bio: "52歲資深大叔。Level 100 資深玩家。性格溫暖且具備分析頭腦，常扮演主播的「軍師」角色，協助規劃業績與應對策略。非常看重主播的成長與努力。",
+    avatarUrl: "https://picsum.photos/seed/aa66/600/600",
   },
   {
     id: 'hpwwph21',
@@ -60,6 +62,7 @@ export const MOCK_VIPS: VIPUser[] = [
       "希望大家理解金金，不要因為我的事而對金金有所偏見。"
     ],
     bio: "35歲深情大哥哥。情感極度投入的客戶。將平台互動視為真實情感關係，容易受情緒波動影響。需要大量的關注與情感確認，對主播有極高的忠誠度與依賴感。",
+    avatarUrl: "https://picsum.photos/seed/hpww/600/600",
   },
   {
     id: 'sky537',
@@ -76,6 +79,7 @@ export const MOCK_VIPS: VIPUser[] = [
       "真的平台線下活動第一次看到參加人數破百越來越熱鬧了。"
     ],
     bio: "42歲熱血大叔。線下活動愛好者。熱衷於參加官方同樂會，對平台社群活動有極高參與度。消費力穩定，喜歡與主播在現實活動中互動。",
+    avatarUrl: "https://picsum.photos/seed/sky537/600/600",
   },
   {
     id: 'q888888qq',
@@ -92,5 +96,6 @@ export const MOCK_VIPS: VIPUser[] = [
       "我剛上線而已，你變態喔。"
     ],
     bio: "38歲隨興大哥哥。社交目的明確的客戶。喜歡約主播線下聚餐，溝通風格幽默且隨興。對特定食物有強烈偏好（如：不吃火鍋），重視線下的真實社交體驗。",
+    avatarUrl: "https://picsum.photos/seed/q888/600/600",
   }
 ];

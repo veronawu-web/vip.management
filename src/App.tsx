@@ -173,25 +173,11 @@ export default function App() {
           </div>
 
           <div className="flex items-center gap-3">
-            <button 
-              onClick={async () => {
-                for (const vip of vips) {
-                  if (!vip.avatarUrl) {
-                    await handleGenerateInsights(vip);
-                  }
-                }
-              }}
-              disabled={!!isGenerating}
-              className="flex items-center gap-2 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white text-sm font-bold rounded-2xl transition-all shadow-lg shadow-indigo-200"
-            >
-              {isGenerating ? <RefreshCw size={16} className="animate-spin" /> : <Sparkles size={16} />}
-              {isGenerating ? 'Generating...' : 'Generate All Avatars'}
-            </button>
             <div className="relative flex-1 max-w-md">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
               <input 
                 type="text" 
-                placeholder="Search VIPs by name or trait..."
+                placeholder="搜尋 VIP 姓名或特質..."
                 className="w-full pl-10 pr-4 py-2.5 bg-gray-100/50 border-transparent focus:bg-white focus:border-indigo-200 focus:ring-4 focus:ring-indigo-50 rounded-2xl transition-all outline-none text-sm"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -332,24 +318,22 @@ function VIPCard({
         )}
       </div>
 
-      {/* Generate Button (if no avatar) */}
-      {!vip.avatarUrl && (
-        <button 
-          onClick={(e) => {
-            e.stopPropagation();
-            onGenerate();
-          }}
-          disabled={isGenerating}
-          className="mt-4 w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold flex items-center justify-center gap-2 transition-colors disabled:opacity-50"
-        >
-          {isGenerating ? (
-            <RefreshCw size={14} className="animate-spin" />
-          ) : (
-            <Sparkles size={14} />
-          )}
-          {isGenerating ? 'Generating...' : 'Generate AI Persona'}
-        </button>
-      )}
+      {/* AI Analysis Button */}
+      <button 
+        onClick={(e) => {
+          e.stopPropagation();
+          onGenerate();
+        }}
+        disabled={isGenerating}
+        className="mt-4 w-full py-2.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-600 text-xs font-bold flex items-center justify-center gap-2 transition-colors disabled:opacity-50"
+      >
+        {isGenerating ? (
+          <RefreshCw size={14} className="animate-spin" />
+        ) : (
+          <Sparkles size={14} />
+        )}
+        {isGenerating ? '分析中...' : 'AI 性格分析'}
+      </button>
     </motion.div>
   );
 }
@@ -432,7 +416,7 @@ function VIPDetail({
             className="mt-8 w-full py-4 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold flex items-center justify-center gap-3 shadow-lg shadow-indigo-200 transition-all active:scale-95 disabled:opacity-50"
           >
             {isGenerating ? <RefreshCw size={20} className="animate-spin" /> : <Sparkles size={20} />}
-            {vip.avatarUrl ? 'Regenerate Persona' : 'Generate AI Persona'}
+            {isGenerating ? 'AI 分析中...' : '重新生成 AI 分析'}
           </button>
         </div>
 
