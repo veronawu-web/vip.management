@@ -7,6 +7,7 @@ export interface VIPUser {
   lastActive: string;
   personalityTraits: string[];
   conversationSnippets: string[];
+  favoriteStreamers?: { name: string; spending: number; status?: string }[];
   personalityScores?: {
     loyalty: number;
     spending: number;
@@ -23,22 +24,33 @@ export const MOCK_VIPS: VIPUser[] = [
     name: 'jmarx5168',
     age: 48,
     level: 'Diamond',
-    totalSpending: 5200000,
-    lastActive: '2026-04-07',
-    personalityTraits: ['Dominant', 'High Expectations', 'Strategic', 'Direct'],
+    totalSpending: 52000000, // Updated based on millions in records
+    lastActive: '2026-04-08',
+    personalityTraits: ['Dominant', 'High Expectations', 'Strategic', 'Direct', 'Venting'],
     conversationSnippets: [
       "因為我付了錢，懂？",
       "錢我多的是，妳算什麼咖？",
       "妳不自以為，就覺得全世界都要聽你的",
-      "妳的努力，我看得出來，是我少數會解鎖的限動"
+      "我討厭妳還幫妳？不主動找我這樣對嗎？",
+      "這筆一對一的約定是 3/9 達成的，至今已經過了 12 天都沒有履行... 我已經請客服介入處理退還點數",
+      "內內不太理我了，有點難解的誤會",
+      "我撐起她業績，而且遙遙領先榜二，所以我不太懂為什麼她封鎖我"
     ],
-    bio: "48歲成熟大叔。Level 95 頂級大戶。極度重視效率與個人權益，溝通風格直接且帶有強烈主導權。對認可的主播會給予極高額度的支持，但對服務品質要求極其嚴苛。",
+    favoriteStreamers: [
+      { name: 'neinei_chen', spending: 23715334, status: '鬧翻/封鎖中' },
+      { name: '_xiaokui.', spending: 7562167 },
+      { name: 'milk_xoxo', spending: 6052028 },
+      { name: 'lovekikii', spending: 5193846 },
+      { name: 'stellajs', spending: 4286795 },
+      { name: 'quinniee', spending: 523010, status: '互動頻繁' }
+    ],
+    bio: "48歲頂級大戶。極度重視「契約精神」與「對等尊重」。近期因高額消費（30萬鑽1對1）未被履行而與頭號主播 neinei_chen 爆發嚴重衝突並遭封鎖。目前處於情感空窗與焦慮轉移期，頻繁向其他主播（如 stellajs, chinchin1010）訴苦，尋求心理平衡。",
     personalityScores: {
-      loyalty: 65,
-      spending: 98,
-      engagement: 40,
-      emotionality: 20,
-      strategic: 95
+      loyalty: 45, // 因鬧翻大幅下降
+      spending: 99,
+      engagement: 85,
+      emotionality: 70, // 近期情緒波動大
+      strategic: 80
     }
   },
   {

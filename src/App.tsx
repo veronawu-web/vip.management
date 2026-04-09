@@ -135,7 +135,8 @@ export default function App() {
         ...v,
         personalityTraits: analysis.traits,
         bio: analysis.personalitySummary,
-        personalityScores: analysis.scores
+        personalityScores: analysis.scores,
+        favoriteStreamers: analysis.favoriteStreamers || v.favoriteStreamers
       } : v));
 
       if (selectedVip?.id === vip.id) {
@@ -143,7 +144,8 @@ export default function App() {
           ...prev,
           personalityTraits: analysis.traits,
           bio: analysis.personalitySummary,
-          personalityScores: analysis.scores
+          personalityScores: analysis.scores,
+          favoriteStreamers: analysis.favoriteStreamers || prev.favoriteStreamers
         } : null);
       }
     } catch (error) {
@@ -511,6 +513,42 @@ function VIPDetail({
               <p className="text-gray-600 leading-relaxed bg-indigo-50/30 p-5 rounded-2xl border border-indigo-50 italic">
                 "{vip.bio || 'Generate insights to see a detailed AI-powered personality summary based on customer interactions.'}"
               </p>
+            </section>
+
+            <section>
+              <div className="flex items-center gap-2 mb-4 text-gray-900">
+                <Heart size={18} className="text-pink-500" />
+                <h4 className="font-bold uppercase tracking-widest text-xs">Favorite Streamers</h4>
+              </div>
+              <div className="grid grid-cols-1 gap-2">
+                {vip.favoriteStreamers?.map((streamer, i) => (
+                  <div key={i} className="flex items-center justify-between p-3 bg-white rounded-xl border border-gray-100 shadow-sm">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-pink-50 flex items-center justify-center text-pink-500 text-xs font-bold">
+                        {streamer.name[0].toUpperCase()}
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-sm font-bold text-gray-900">{streamer.name}</span>
+                        {streamer.status && (
+                          <span className={cn(
+                            "text-[10px] font-bold",
+                            streamer.status.includes('鬧翻') ? "text-red-500" : "text-green-500"
+                          )}>
+                            {streamer.status}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-xs font-black text-gray-900">{streamer.spending.toLocaleString()}</div>
+                      <div className="text-[9px] text-gray-400 font-bold uppercase tracking-tighter">Diamonds</div>
+                    </div>
+                  </div>
+                ))}
+                {!vip.favoriteStreamers && (
+                  <p className="text-xs text-gray-400 italic text-center py-4">No streamer data available.</p>
+                )}
+              </div>
             </section>
 
             <section>

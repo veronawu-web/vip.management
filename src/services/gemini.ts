@@ -27,10 +27,11 @@ export async function analyzeVIPPersonality(user: VIPUser): Promise<{
     emotionality: number;
     strategic: number;
   };
+  favoriteStreamers?: { name: string; spending: number; status?: string }[];
 }> {
   const ai = getAI();
   const prompt = `
-    Analyze the following VIP customer's conversation snippets and existing traits to create a deeper personality profile and analytical scores (0-100).
+    Analyze the following VIP customer's data to create a deeper personality profile, analytical scores, and a summary of their favorite streamers.
     
     Customer Name: ${user.name}
     Current Traits: ${user.personalityTraits.join(', ')}
@@ -46,6 +47,8 @@ export async function analyzeVIPPersonality(user: VIPUser): Promise<{
        - engagement: How much they interact and participate.
        - emotionality: How much they are driven by emotions.
        - strategic: How much they plan and calculate their actions.
+    4. favoriteStreamers: An array of objects with { name, spending, status }.
+       - Identify streamers they like or have conflict with from the conversations.
   `;
 
   const response = await ai.models.generateContent({
@@ -71,6 +74,18 @@ export async function analyzeVIPPersonality(user: VIPUser): Promise<{
               strategic: { type: Type.NUMBER }
             },
             required: ["loyalty", "spending", "engagement", "emotionality", "strategic"]
+          },
+          favoriteStreamers: {
+            type: Type.ARRAY,
+            items: {
+              type: Type.OBJECT,
+              properties: {
+                name: { type: Type.STRING },
+                spending: { type: Type.NUMBER },
+                status: { type: Type.STRING }
+              },
+              required: ["name", "spending"]
+            }
           }
         },
         required: ["personalitySummary", "traits", "scores"]
