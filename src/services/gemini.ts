@@ -31,24 +31,24 @@ export async function analyzeVIPPersonality(user: VIPUser): Promise<{
 }> {
   const ai = getAI();
   const prompt = `
-    Analyze the following VIP customer's data to create a deeper personality profile, analytical scores, and a summary of their favorite streamers.
+    請分析以下 VIP 客戶的數據，建立深度的性格檔案、分析評分，以及他們喜愛的主播總結。
     
-    Customer Name: ${user.name}
-    Current Traits: ${user.personalityTraits.join(', ')}
-    Conversations:
+    客戶姓名: ${user.name}
+    目前特質: ${user.personalityTraits.join(', ')}
+    對話紀錄:
     ${user.conversationSnippets.map(s => `- "${s}"`).join('\n')}
     
-    Return a JSON object with:
-    1. personalitySummary: A 2-sentence professional summary of their communication style and values.
-    2. traits: 3-5 refined personality keywords.
-    3. scores: A JSON object with scores from 0 to 100 for:
-       - loyalty: How devoted they are to the streamer.
-       - spending: Their willingness to spend high amounts.
-       - engagement: How much they interact and participate.
-       - emotionality: How much they are driven by emotions.
-       - strategic: How much they plan and calculate their actions.
-    4. favoriteStreamers: An array of objects with { name, spending, status }.
-       - Identify streamers they like or have conflict with from the conversations.
+    請返回一個 JSON 對象，包含：
+    1. personalitySummary: 兩句話的專業總結，描述他們的溝通風格和價值觀（請使用繁體中文）。
+    2. traits: 3-5 個精煉的性格關鍵詞（請使用繁體中文）。
+    3. scores: 一個包含 0 到 100 分數的 JSON 對象：
+       - loyalty: 對主播的忠誠度。
+       - spending: 高額消費的意願。
+       - engagement: 互動與參與程度。
+       - emotionality: 受情緒驅動的程度。
+       - strategic: 行為的計畫性與計算程度。
+    4. favoriteStreamers: 包含 { name, spending, status } 的數組。
+       - 從對話中識別他們喜歡或有衝突的主播（status 請使用繁體中文描述，例如「支持中」、「已鬧翻」）。
   `;
 
   const response = await ai.models.generateContent({

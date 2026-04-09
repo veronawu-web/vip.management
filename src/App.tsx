@@ -68,8 +68,8 @@ export default function App() {
             <div className="w-16 h-16 rounded-2xl bg-indigo-600 flex items-center justify-center text-white shadow-xl shadow-indigo-200 mb-4">
               <Users size={32} />
             </div>
-            <h1 className="text-2xl font-black text-gray-900 tracking-tight">VIP Insights</h1>
-            <p className="text-sm text-gray-400 font-medium uppercase tracking-widest mt-1">Internal Access Only</p>
+            <h1 className="text-2xl font-black text-gray-900 tracking-tight">VIP 洞察系統</h1>
+            <p className="text-sm text-gray-400 font-medium uppercase tracking-widest mt-1">內部存取專用</p>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-6">
@@ -108,9 +108,9 @@ export default function App() {
           <div className="mt-10 pt-8 border-t border-gray-50 flex flex-col items-center gap-2 text-[10px] text-gray-300 font-bold uppercase tracking-tighter">
             <div className="flex items-center gap-1">
               <Sparkles size={12} />
-              <span>AI-Powered Insights Engine</span>
+              <span>AI 驅動洞察引擎</span>
             </div>
-            <span>© 2026 VIP Management System</span>
+            <span>© 2026 VIP 管理系統</span>
           </div>
         </motion.div>
       </div>
@@ -182,8 +182,8 @@ export default function App() {
                 <Users size={24} />
               </div>
               <div className="min-w-0">
-                <h1 className="text-lg md:text-xl font-bold tracking-tight text-gray-900 truncate">VIP Insights Directory</h1>
-                <p className="text-[10px] md:text-xs text-gray-500 font-medium uppercase tracking-wider truncate">Internal Access Only</p>
+                <h1 className="text-lg md:text-xl font-bold tracking-tight text-gray-900 truncate">VIP 客戶洞察名錄</h1>
+                <p className="text-[10px] md:text-xs text-gray-500 font-medium uppercase tracking-wider truncate">內部公司存取專用</p>
               </div>
             </div>
             
@@ -234,12 +234,12 @@ export default function App() {
         ) : (
           <div className="flex flex-col items-center justify-center py-20 text-gray-400">
             <Search size={48} className="mb-4 opacity-20" />
-            <p className="text-lg font-medium">No VIPs found matching your search.</p>
+            <p className="text-lg font-medium">找不到符合搜尋條件的 VIP。</p>
             <button 
               onClick={() => setSearchTerm('')}
               className="mt-4 text-indigo-600 font-bold hover:underline"
             >
-              Clear search
+              清除搜尋
             </button>
           </div>
         )}
@@ -261,11 +261,11 @@ export default function App() {
       <footer className="fixed bottom-0 left-0 right-0 py-4 px-6 bg-white/80 backdrop-blur-md border-t border-gray-100 flex justify-center items-center gap-6 text-xs text-gray-400">
         <div className="flex items-center gap-1.5">
           <TrendingUp size={14} />
-          <span>Total VIP Revenue: $4,650,000</span>
+          <span>VIP 總營收: $4,650,000</span>
         </div>
         <div className="flex items-center gap-1.5">
           <Sparkles size={14} className="text-indigo-400" />
-          <span>AI-Powered Personas</span>
+          <span>AI 驅動性格分析</span>
         </div>
       </footer>
     </div>
@@ -365,7 +365,7 @@ function VIPCard({
         </div>
         <div className="flex items-center gap-1.5 text-gray-400 text-xs font-medium">
           <DollarSign size={12} />
-          <span>${vip.totalSpending.toLocaleString()} Spent</span>
+          <span>總消費 ${vip.totalSpending.toLocaleString()}</span>
         </div>
       </div>
 
@@ -460,7 +460,7 @@ function VIPDetail({
                 <div className="w-8 h-8 rounded-lg bg-green-50 text-green-600 flex items-center justify-center">
                   <DollarSign size={18} />
                 </div>
-                <span className="text-sm font-medium text-gray-500">Total Spent</span>
+                <span className="text-sm font-medium text-gray-500">總累積消費</span>
               </div>
               <span className="text-lg font-bold text-gray-900">${vip.totalSpending.toLocaleString()}</span>
             </div>
@@ -470,7 +470,7 @@ function VIPDetail({
                 <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
                   <Calendar size={18} />
                 </div>
-                <span className="text-sm font-medium text-gray-500">Last Active</span>
+                <span className="text-sm font-medium text-gray-500">最後活躍日期</span>
               </div>
               <span className="text-sm font-bold text-gray-900">{vip.lastActive}</span>
             </div>
@@ -520,17 +520,17 @@ function VIPDetail({
             <section>
               <div className="flex items-center gap-2 mb-4 text-gray-900">
                 <Info size={18} className="text-indigo-600" />
-                <h4 className="font-bold uppercase tracking-widest text-xs">AI Personality Insight</h4>
+                <h4 className="font-bold uppercase tracking-widest text-xs">AI 性格洞察</h4>
               </div>
               <p className="text-gray-600 leading-relaxed bg-indigo-50/30 p-5 rounded-2xl border border-indigo-50 italic">
-                "{vip.bio || 'Generate insights to see a detailed AI-powered personality summary based on customer interactions.'}"
+                "{vip.bio || '請點擊生成按鈕，查看基於客戶互動紀錄的 AI 性格總結。'}"
               </p>
             </section>
 
             <section>
               <div className="flex items-center gap-2 mb-4 text-gray-900">
                 <Heart size={18} className="text-pink-500" />
-                <h4 className="font-bold uppercase tracking-widest text-xs">Favorite Streamers</h4>
+                <h4 className="font-bold uppercase tracking-widest text-xs">喜愛的主播</h4>
               </div>
               <div className="grid grid-cols-1 gap-2">
                 {vip.favoriteStreamers?.map((streamer, i) => (
@@ -553,12 +553,12 @@ function VIPDetail({
                     </div>
                     <div className="text-right">
                       <div className="text-xs font-black text-gray-900">{streamer.spending.toLocaleString()}</div>
-                      <div className="text-[9px] text-gray-400 font-bold uppercase tracking-tighter">Diamonds</div>
+                      <div className="text-[9px] text-gray-400 font-bold uppercase tracking-tighter">鑽石</div>
                     </div>
                   </div>
                 ))}
                 {!vip.favoriteStreamers && (
-                  <p className="text-xs text-gray-400 italic text-center py-4">No streamer data available.</p>
+                  <p className="text-xs text-gray-400 italic text-center py-4">尚無主播數據。</p>
                 )}
               </div>
             </section>
@@ -566,7 +566,7 @@ function VIPDetail({
             <section>
               <div className="flex items-center gap-2 mb-4 text-gray-900">
                 <MessageSquare size={18} className="text-indigo-600" />
-                <h4 className="font-bold uppercase tracking-widest text-xs">Conversation Snippets</h4>
+                <h4 className="font-bold uppercase tracking-widest text-xs">對話片段</h4>
               </div>
               <div className="space-y-3">
                 {vip.conversationSnippets.map((snippet, i) => (

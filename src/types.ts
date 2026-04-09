@@ -26,7 +26,7 @@ export const MOCK_VIPS: VIPUser[] = [
     level: 'Diamond',
     totalSpending: 52000000, // Updated based on millions in records
     lastActive: '2026-04-08',
-    personalityTraits: ['Dominant', 'High Expectations', 'Strategic', 'Direct', 'Venting'],
+    personalityTraits: ['支配型', '高期望', '策略性', '直言不諱', '宣洩型'],
     conversationSnippets: [
       "因為我付了錢，懂？",
       "錢我多的是，妳算什麼咖？",
@@ -60,7 +60,7 @@ export const MOCK_VIPS: VIPUser[] = [
     level: 'Diamond',
     totalSpending: 3800000,
     lastActive: '2026-04-07',
-    personalityTraits: ['Mentor-like', 'Analytical', 'Supportive', 'Protective'],
+    personalityTraits: ['導師型', '分析型', '支持型', '保護型'],
     conversationSnippets: [
       "你今天的努力沒有白費，每次要求自己的業績都有到，我其實很高興。",
       "你是我的軍師，不管結果如何，我都會去面對。",
@@ -83,7 +83,7 @@ export const MOCK_VIPS: VIPUser[] = [
     level: 'Platinum',
     totalSpending: 1200000,
     lastActive: '2026-04-06',
-    personalityTraits: ['Emotional', 'Devoted', 'Vulnerable', 'Intense'],
+    personalityTraits: ['情感豐富', '投入', '脆弱', '強烈'],
     conversationSnippets: [
       "我可以放棄一切，就是不能失去你。",
       "我真的沒有你...",
@@ -106,7 +106,7 @@ export const MOCK_VIPS: VIPUser[] = [
     level: 'Platinum',
     totalSpending: 950000,
     lastActive: '2026-04-07',
-    personalityTraits: ['Event-focused', 'Enthusiastic', 'Generous', 'Planning'],
+    personalityTraits: ['活動導向', '熱情', '慷慨', '計畫型'],
     conversationSnippets: [
       "也要感謝🍬🍬能陪我一起參加官方活動。",
       "嘿嘿帶主播去同樂會免刷💎福利還有嗎？",
@@ -129,7 +129,7 @@ export const MOCK_VIPS: VIPUser[] = [
     level: 'Gold',
     totalSpending: 650000,
     lastActive: '2026-04-05',
-    personalityTraits: ['Casual', 'Social', 'Foodie', 'Straightforward'],
+    personalityTraits: ['隨興', '社交型', '美食家', '直率'],
     conversationSnippets: [
       "約個時間吃飯啊，下禮拜二三四你挑一天。",
       "妳想吃哪家？橘色一館 4/8 19:00。",
