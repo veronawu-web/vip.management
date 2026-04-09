@@ -499,6 +499,29 @@ function VIPDetail({
                 </span>
               </div>
             </div>
+
+            {/* Basic Info Row */}
+            <div className="flex flex-wrap gap-4 mb-6">
+              {vip.birthday && (
+                <div className="flex items-center gap-2 px-3 py-1.5 bg-gray-50 rounded-xl border border-gray-100">
+                  <Calendar size={14} className="text-gray-400" />
+                  <span className="text-xs font-bold text-gray-600">{vip.birthday}</span>
+                </div>
+              )}
+              {vip.zodiac && (
+                <div className="flex items-center gap-2 px-3 py-1.5 bg-indigo-50 rounded-xl border border-indigo-100">
+                  <Sparkles size={14} className="text-indigo-400" />
+                  <span className="text-xs font-bold text-indigo-600">{vip.zodiac}</span>
+                </div>
+              )}
+              {vip.bloodType && (
+                <div className="flex items-center gap-2 px-3 py-1.5 bg-red-50 rounded-xl border border-red-100">
+                  <Heart size={14} className="text-red-400" />
+                  <span className="text-xs font-bold text-red-600">{vip.bloodType}</span>
+                </div>
+              )}
+            </div>
+
             <div className="flex flex-wrap gap-2">
               {vip.personalityTraits.map((trait, i) => (
                 <span key={i} className="px-3 py-1 rounded-full bg-indigo-50 text-indigo-600 text-[10px] sm:text-xs font-bold">

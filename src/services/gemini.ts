@@ -34,6 +34,7 @@ export async function analyzeVIPPersonality(user: VIPUser): Promise<{
     請分析以下 VIP 客戶的數據，建立深度的性格檔案、分析評分，以及他們喜愛的主播總結。
     
     客戶姓名: ${user.name}
+    基本資料: ${user.age}歲, ${user.zodiac || '未知星座'}, ${user.bloodType || '未知血型'}
     目前特質: ${user.personalityTraits.join(', ')}
     對話紀錄:
     ${user.conversationSnippets.map(s => `- "${s}"`).join('\n')}

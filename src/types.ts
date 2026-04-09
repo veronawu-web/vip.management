@@ -8,6 +8,9 @@ export interface VIPUser {
   personalityTraits: string[];
   conversationSnippets: string[];
   favoriteStreamers?: { name: string; spending: number; status?: string }[];
+  birthday?: string;
+  zodiac?: string;
+  bloodType?: string;
   personalityScores?: {
     loyalty: number;
     spending: number;
@@ -44,6 +47,9 @@ export const MOCK_VIPS: VIPUser[] = [
       { name: 'stellajs', spending: 4286795 },
       { name: 'quinniee', spending: 523010, status: '互動頻繁' }
     ],
+    birthday: '1978-05-12',
+    zodiac: '金牛座',
+    bloodType: 'O型',
     bio: "48歲頂級大戶。極度重視「契約精神」與「對等尊重」。近期因高額消費（30萬鑽1對1）未被履行而與頭號主播 neinei_chen 爆發嚴重衝突並遭封鎖。目前處於情感空窗與焦慮轉移期，頻繁向其他主播（如 stellajs, chinchin1010）訴苦，尋求心理平衡。",
     personalityScores: {
       loyalty: 45, // 因鬧翻大幅下降
@@ -68,6 +74,9 @@ export const MOCK_VIPS: VIPUser[] = [
       "新的自媒體方案你有打算要怎麼做嗎？"
     ],
     bio: "52歲資深大叔。Level 100 資深玩家。性格溫暖且具備分析頭腦，常扮演主播的「軍師」角色，協助規劃業績與應對策略。非常看重主播的成長與努力。",
+    birthday: '1974-11-20',
+    zodiac: '天蠍座',
+    bloodType: 'A型',
     personalityScores: {
       loyalty: 90,
       spending: 85,
@@ -91,6 +100,9 @@ export const MOCK_VIPS: VIPUser[] = [
       "希望大家理解金金，不要因為我的事而對金金有所偏見。"
     ],
     bio: "35歲深情大哥哥。情感極度投入的客戶。將平台互動視為真實情感關係，容易受情緒波動影響。需要大量的關注與情感確認，對主播有極高的忠誠度與依賴感。",
+    birthday: '1991-02-14',
+    zodiac: '水瓶座',
+    bloodType: 'B型',
     personalityScores: {
       loyalty: 95,
       spending: 60,
@@ -114,6 +126,9 @@ export const MOCK_VIPS: VIPUser[] = [
       "真的平台線下活動第一次看到參加人數破百越來越熱鬧了。"
     ],
     bio: "42歲熱血大叔。線下活動愛好者。熱衷於參加官方同樂會，對平台社群活動有極高參與度。消費力穩定，喜歡與主播在現實活動中互動。",
+    birthday: '1984-08-05',
+    zodiac: '獅子座',
+    bloodType: 'AB型',
     personalityScores: {
       loyalty: 80,
       spending: 55,
@@ -137,6 +152,9 @@ export const MOCK_VIPS: VIPUser[] = [
       "我剛上線而已，你變態喔。"
     ],
     bio: "38歲隨興大哥哥。社交目的明確的客戶。喜歡約主播線下聚餐，溝通風格幽默且隨興。對特定食物有強烈偏好（如：不吃火鍋），重視線下的真實社交體驗。",
+    birthday: '1988-12-25',
+    zodiac: '摩羯座',
+    bloodType: 'O型',
     personalityScores: {
       loyalty: 50,
       spending: 45,
