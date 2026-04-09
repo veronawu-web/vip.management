@@ -17,17 +17,30 @@ import {
   Zap,
   Info,
   RefreshCw,
-  Search
+  Search,
+  Activity,
+  Target,
+  Heart,
+  ShieldCheck,
+  ZapIcon
 } from 'lucide-react';
+import { 
+  Radar, 
+  RadarChart, 
+  PolarGrid, 
+  PolarAngleAxis, 
+  ResponsiveContainer 
+} from 'recharts';
 import { VIPUser, MOCK_VIPS } from './types';
 import { cn } from './lib/utils';
-import { analyzeVIPPersonality, generateVIPAvatar } from './services/gemini';
+import { analyzeVIPPersonality } from './services/gemini';
 
 export default function App() {
   const [vips, setVips] = useState<VIPUser[]>(MOCK_VIPS);
   const [selectedVip, setSelectedVip] = useState<VIPUser | null>(null);
   const [isGenerating, setIsGenerating] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isBatchGenerating, setIsBatchGenerating] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -109,51 +122,50 @@ export default function App() {
     vip.personalityTraits.some(t => t.toLowerCase().includes(searchTerm.toLowerCase()))
   );
 
-  const handleGenerateInsights = async (vip: VIPUser) => {
-    if (isGenerating) return;
+  const handleGenerateInsights = async (vip: VIPUser, retryCount = 0) => {
+    if (isGenerating && retryCount === 0 && !isBatchGenerating) return;
     setIsGenerating(vip.id);
     
     try {
-      // 1. Analyze personality and get avatar prompt
+      // 1. Analyze personality and get scores
       const analysis = await analyzeVIPPersonality(vip);
       
-      // 2. Try to generate avatar image (optional)
-      let avatarUrl = vip.avatarUrl;
-      try {
-        avatarUrl = await generateVIPAvatar(analysis.avatarPrompt);
-      } catch (imgError) {
-        console.warn("Avatar image generation failed, skipping image update:", imgError);
-        // We don't alert here to keep the experience smooth
-      }
-      
-      // 3. Update VIP data (always update text insights)
+      // 2. Update VIP data
       setVips(prev => prev.map(v => v.id === vip.id ? {
         ...v,
         personalityTraits: analysis.traits,
         bio: analysis.personalitySummary,
-        avatarUrl: avatarUrl,
-        avatarDescription: analysis.avatarPrompt
+        personalityScores: analysis.scores
       } : v));
 
-      // Update selected VIP
       if (selectedVip?.id === vip.id) {
         setSelectedVip(prev => prev ? {
           ...prev,
           personalityTraits: analysis.traits,
           bio: analysis.personalitySummary,
-          avatarUrl: avatarUrl
+          personalityScores: analysis.scores
         } : null);
-      }
-
-      if (!avatarUrl && !vip.avatarUrl) {
-        alert("文字分析已完成！\n\n提示：圖片生成失敗（通常是因為 Google API 的地區或額度限制），但您仍可查看性格分析。");
       }
     } catch (error) {
       console.error("Failed to generate insights:", error);
       const errorMessage = error instanceof Error ? error.message : String(error);
-      alert(`AI 產生失敗：\n${errorMessage}\n\n請檢查 GitHub Secrets 中的 GEMINI_API_KEY 是否設定正確。`);
+      
+      // Retry logic for 503 errors
+      if (errorMessage.includes('503') && retryCount < 2) {
+        console.log(`Retrying generation for ${vip.name} (attempt ${retryCount + 1})...`);
+        setTimeout(() => handleGenerateInsights(vip, retryCount + 1), 2000);
+        return;
+      }
+
+      const friendlyMessage = errorMessage.includes('503') 
+        ? "AI 目前忙碌中（503 錯誤），請稍候幾秒再試一次。這通常是暫時性的流量高峰。"
+        : `AI 產生失敗：\n${errorMessage}\n\n請檢查 API Key 是否設定正確。`;
+      
+      alert(friendlyMessage);
     } finally {
-      setIsGenerating(null);
+      if (retryCount === 0 || !isGenerating) {
+        setIsGenerating(null);
+      }
     }
   };
 
@@ -175,15 +187,17 @@ export default function App() {
           <div className="flex items-center gap-3">
             <button 
               onClick={async () => {
+                setIsBatchGenerating(true);
                 for (const vip of vips) {
                   await handleGenerateInsights(vip);
                 }
+                setIsBatchGenerating(false);
               }}
-              disabled={!!isGenerating}
+              disabled={!!isGenerating || isBatchGenerating}
               className="hidden md:flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-300 text-white text-xs font-bold rounded-xl shadow-lg shadow-indigo-100 transition-all active:scale-95"
             >
-              <Sparkles size={14} className={cn(isGenerating && "animate-spin")} />
-              {isGenerating ? 'AI 批量生成中...' : '一鍵生成所有 AI 畫像'}
+              <Sparkles size={14} className={cn((isGenerating || isBatchGenerating) && "animate-spin")} />
+              {(isGenerating || isBatchGenerating) ? 'AI 批量分析中...' : '一鍵生成所有 AI 深度分析'}
             </button>
             <div className="relative flex-1 max-w-md">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
@@ -254,6 +268,36 @@ export default function App() {
   );
 }
 
+function PersonalityRadar({ scores, color }: { scores: VIPUser['personalityScores'], color: string }) {
+  if (!scores) return null;
+
+  const data = [
+    { subject: '忠誠度', A: scores.loyalty, fullMark: 100 },
+    { subject: '消費力', A: scores.spending, fullMark: 100 },
+    { subject: '互動性', A: scores.engagement, fullMark: 100 },
+    { subject: '情感度', A: scores.emotionality, fullMark: 100 },
+    { subject: '策略性', A: scores.strategic, fullMark: 100 },
+  ];
+
+  return (
+    <div className="w-full h-full">
+      <ResponsiveContainer width="100%" height="100%">
+        <RadarChart cx="50%" cy="50%" outerRadius="70%" data={data}>
+          <PolarGrid stroke="#E2E8F0" />
+          <PolarAngleAxis dataKey="subject" tick={{ fill: '#94A3B8', fontSize: 10, fontWeight: 600 }} />
+          <Radar
+            name="Personality"
+            dataKey="A"
+            stroke={color}
+            fill={color}
+            fillOpacity={0.5}
+          />
+        </RadarChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}
+
 function VIPCard({ 
   vip, 
   onClick, 
@@ -267,6 +311,12 @@ function VIPCard({
   key?: React.Key;
 }) {
   const levelColor = {
+    Diamond: '#4F46E5', // Indigo 600
+    Platinum: '#0891B2', // Cyan 600
+    Gold: '#D97706' // Amber 600
+  }[vip.level];
+
+  const levelGradient = {
     Diamond: 'vip-gradient-diamond',
     Platinum: 'vip-gradient-platinum',
     Gold: 'vip-gradient-gold'
@@ -280,32 +330,27 @@ function VIPCard({
       onClick={onClick}
     >
       {/* Level Badge */}
-      <div className={cn("absolute top-5 right-5 px-3 py-1 rounded-full text-[10px] font-bold text-white uppercase tracking-widest shadow-sm", levelColor)}>
+      <div className={cn("absolute top-5 right-5 px-3 py-1 rounded-full text-[10px] font-bold text-white uppercase tracking-widest shadow-sm z-10", levelGradient)}>
         {vip.level}
       </div>
 
-      {/* Avatar Section */}
-      <div className="relative aspect-square w-full rounded-2xl bg-gray-50 mb-4 overflow-hidden flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
-        {vip.avatarUrl ? (
-          <img 
-            src={vip.avatarUrl} 
-            alt={vip.name} 
-            className="w-full h-full object-cover"
-            referrerPolicy="no-referrer"
-            onError={(e) => {
-              e.currentTarget.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(vip.name)}&background=random&color=fff&size=600`;
-            }}
-            loading="lazy"
-          />
+      {/* Personality Visualization Section */}
+      <div className="relative aspect-square w-full rounded-2xl bg-gray-50 mb-4 overflow-hidden flex items-center justify-center group-hover:scale-105 transition-transform duration-500 border border-gray-100">
+        {vip.personalityScores ? (
+          <PersonalityRadar scores={vip.personalityScores} color={levelColor} />
         ) : (
           <div className="flex flex-col items-center gap-2 text-gray-300">
-            <Users size={48} strokeWidth={1} />
-            <span className="text-[10px] uppercase font-bold tracking-tighter">No Avatar</span>
+            <Activity size={48} strokeWidth={1} />
+            <span className="text-[10px] uppercase font-bold tracking-tighter">分析數據未生成</span>
           </div>
         )}
         
-        {/* Hover Overlay */}
-        <div className="absolute inset-0 bg-indigo-600/0 group-hover:bg-indigo-600/10 transition-colors" />
+        {isGenerating && (
+          <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex flex-col items-center justify-center gap-2">
+            <RefreshCw size={24} className="text-indigo-600 animate-spin" />
+            <span className="text-[10px] font-bold text-indigo-600 animate-pulse">數據分析中...</span>
+          </div>
+        )}
       </div>
 
       {/* Info Section */}
@@ -362,35 +407,42 @@ function VIPDetail({
         layoutId={`card-${vip.id}`}
         className="relative w-full max-w-4xl max-h-[90vh] bg-white rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col md:flex-row"
       >
-        {/* Left Side: Avatar & Stats */}
+        {/* Left Side: Personality Chart & Stats */}
         <div className="w-full md:w-2/5 bg-gray-50 p-8 flex flex-col items-center">
-          <div className="relative w-full aspect-square rounded-3xl bg-white shadow-xl shadow-indigo-100/50 overflow-hidden mb-8 clay-shadow">
-            {vip.avatarUrl ? (
-              <img 
-                src={vip.avatarUrl} 
-                alt={vip.name} 
-                className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
-                onError={(e) => {
-                  e.currentTarget.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(vip.name)}&background=random&color=fff&size=600`;
-                }}
-              />
+          <div className="relative w-full aspect-square rounded-3xl bg-white shadow-xl shadow-indigo-100/50 overflow-hidden mb-8 flex items-center justify-center border border-indigo-50">
+            {vip.personalityScores ? (
+              <div className="w-full h-full p-4">
+                <PersonalityRadar 
+                  scores={vip.personalityScores} 
+                  color={vip.level === 'Diamond' ? '#4F46E5' : vip.level === 'Platinum' ? '#0891B2' : '#D97706'} 
+                />
+              </div>
             ) : (
               <div className="w-full h-full flex flex-col items-center justify-center text-gray-200">
-                <Users size={80} strokeWidth={1} />
-                <p className="text-xs font-bold uppercase tracking-widest mt-4">Avatar Pending</p>
+                <Activity size={80} strokeWidth={1} />
+                <p className="text-xs font-bold uppercase tracking-widest mt-4">數據分析待生成</p>
               </div>
             )}
             
             {isGenerating && (
               <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex flex-col items-center justify-center gap-4">
                 <div className="w-12 h-12 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin" />
-                <p className="text-sm font-bold text-indigo-600 animate-pulse">AI is crafting persona...</p>
+                <p className="text-sm font-bold text-indigo-600 animate-pulse">AI 深度分析中...</p>
               </div>
             )}
           </div>
 
           <div className="w-full space-y-4">
+            <div className="grid grid-cols-2 gap-3">
+              <div className="p-4 bg-white rounded-2xl border border-gray-100 flex flex-col items-center gap-1">
+                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">忠誠度</span>
+                <span className="text-xl font-black text-indigo-600">{vip.personalityScores?.loyalty || '--'}</span>
+              </div>
+              <div className="p-4 bg-white rounded-2xl border border-gray-100 flex flex-col items-center gap-1">
+                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">消費力</span>
+                <span className="text-xl font-black text-indigo-600">{vip.personalityScores?.spending || '--'}</span>
+              </div>
+            </div>
             <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-gray-100">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-green-50 text-green-600 flex items-center justify-center">
@@ -446,7 +498,7 @@ function VIPDetail({
               className="mt-4 flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-300 text-white text-xs font-bold rounded-xl shadow-lg shadow-indigo-100 transition-all active:scale-95"
             >
               <RefreshCw size={14} className={cn(isGenerating && "animate-spin")} />
-              {isGenerating ? 'AI 生成中...' : '重新生成 AI 虛擬形象'}
+              {isGenerating ? 'AI 分析中...' : '重新生成 AI 深度分析'}
             </button>
           </div>
 

@@ -19,12 +19,18 @@ function getAI() {
 
 export async function analyzeVIPPersonality(user: VIPUser): Promise<{
   personalitySummary: string;
-  avatarPrompt: string;
   traits: string[];
+  scores: {
+    loyalty: number;
+    spending: number;
+    engagement: number;
+    emotionality: number;
+    strategic: number;
+  };
 }> {
   const ai = getAI();
   const prompt = `
-    Analyze the following VIP customer's conversation snippets and existing traits to create a deeper personality profile and a visual description for a 3D avatar.
+    Analyze the following VIP customer's conversation snippets and existing traits to create a deeper personality profile and analytical scores (0-100).
     
     Customer Name: ${user.name}
     Current Traits: ${user.personalityTraits.join(', ')}
@@ -33,11 +39,13 @@ export async function analyzeVIPPersonality(user: VIPUser): Promise<{
     
     Return a JSON object with:
     1. personalitySummary: A 2-sentence professional summary of their communication style and values.
-    2. avatarPrompt: A detailed prompt for an image generator to create a 3D character avatar. 
-       STRICT STYLE REQUIREMENT: The description MUST follow this exact style: "3D stylized vinyl toy character, high-quality 3D render, clay-like texture, rounded and smooth features, large expressive eyes, clean studio lighting, solid neutral light gray background".
-       EXAMPLE PROMPT: "3D stylized vinyl toy character of a mature man with a kind smile, wearing a yellow beanie and a black oversized hoodie, high-quality 3D render, clay-like texture, rounded and smooth features, large expressive eyes, clean studio lighting, solid neutral light gray background."
-       The character should be a bust-up portrait. Include specific accessories (like a colorful beanie, a hoodie, a baseball cap, or thick-rimmed glasses) that match their personality.
-    3. traits: 3-5 refined personality keywords.
+    2. traits: 3-5 refined personality keywords.
+    3. scores: A JSON object with scores from 0 to 100 for:
+       - loyalty: How devoted they are to the streamer.
+       - spending: Their willingness to spend high amounts.
+       - engagement: How much they interact and participate.
+       - emotionality: How much they are driven by emotions.
+       - strategic: How much they plan and calculate their actions.
   `;
 
   const response = await ai.models.generateContent({
@@ -49,13 +57,23 @@ export async function analyzeVIPPersonality(user: VIPUser): Promise<{
         type: Type.OBJECT,
         properties: {
           personalitySummary: { type: Type.STRING },
-          avatarPrompt: { type: Type.STRING },
           traits: {
             type: Type.ARRAY,
             items: { type: Type.STRING }
+          },
+          scores: {
+            type: Type.OBJECT,
+            properties: {
+              loyalty: { type: Type.NUMBER },
+              spending: { type: Type.NUMBER },
+              engagement: { type: Type.NUMBER },
+              emotionality: { type: Type.NUMBER },
+              strategic: { type: Type.NUMBER }
+            },
+            required: ["loyalty", "spending", "engagement", "emotionality", "strategic"]
           }
         },
-        required: ["personalitySummary", "avatarPrompt", "traits"]
+        required: ["personalitySummary", "traits", "scores"]
       }
     }
   });
@@ -63,10 +81,4 @@ export async function analyzeVIPPersonality(user: VIPUser): Promise<{
   return JSON.parse(response.text || '{}');
 }
 
-export async function generateVIPAvatar(prompt: string): Promise<string> {
-  // Use Pollinations AI as a reliable fallback for image generation
-  // to avoid 403 Permission Denied errors with Gemini image models in some regions
-  const encodedPrompt = encodeURIComponent(prompt);
-  const seed = Math.floor(Math.random() * 100000);
-  return `https://image.pollinations.ai/prompt/${encodedPrompt}?width=600&height=600&nologo=true&seed=${seed}`;
-}
+// Remove generateVIPAvatar as it's no longer needed

@@ -7,8 +7,13 @@ export interface VIPUser {
   lastActive: string;
   personalityTraits: string[];
   conversationSnippets: string[];
-  avatarUrl?: string;
-  avatarDescription?: string;
+  personalityScores?: {
+    loyalty: number;
+    spending: number;
+    engagement: number;
+    emotionality: number;
+    strategic: number;
+  };
   bio?: string;
 }
 
@@ -28,8 +33,13 @@ export const MOCK_VIPS: VIPUser[] = [
       "妳的努力，我看得出來，是我少數會解鎖的限動"
     ],
     bio: "48歲成熟大叔。Level 95 頂級大戶。極度重視效率與個人權益，溝通風格直接且帶有強烈主導權。對認可的主播會給予極高額度的支持，但對服務品質要求極其嚴苛。",
-    avatarUrl: "https://image.pollinations.ai/prompt/3D-render-Pixar-style-cute-vinyl-toy-of-a-wealthy-man-with-silver-hair-black-turtleneck-gold-glasses-studio-lighting-solid-background?width=600&height=600&nologo=true&seed=1111",
-    avatarDescription: "3D stylized vinyl toy character of a sophisticated, wealthy man with a sharp undercut hairstyle, wearing a black luxury turtleneck and thick-rimmed gold-framed glasses, high-quality 3D render, clay-like texture, rounded and smooth features, large expressive eyes with a discerning look, clean studio lighting, solid neutral light gray background.",
+    personalityScores: {
+      loyalty: 65,
+      spending: 98,
+      engagement: 40,
+      emotionality: 20,
+      strategic: 95
+    }
   },
   {
     id: 'aa6655891',
@@ -46,8 +56,13 @@ export const MOCK_VIPS: VIPUser[] = [
       "新的自媒體方案你有打算要怎麼做嗎？"
     ],
     bio: "52歲資深大叔。Level 100 資深玩家。性格溫暖且具備分析頭腦，常扮演主播的「軍師」角色，協助規劃業績與應對策略。非常看重主播的成長與努力。",
-    avatarUrl: "https://image.pollinations.ai/prompt/3D-render-Pixar-style-cute-vinyl-toy-of-a-wise-older-man-gray-sweater-yellow-beanie-studio-lighting-solid-background?width=600&height=600&nologo=true&seed=2222",
-    avatarDescription: "3D stylized vinyl toy character of a wise mentor figure, wearing a cozy oversized gray cardigan and a soft yellow beanie, high-quality 3D render, clay-like texture, rounded and smooth features, large kind eyes, warm studio lighting, solid neutral light gray background.",
+    personalityScores: {
+      loyalty: 90,
+      spending: 85,
+      engagement: 75,
+      emotionality: 50,
+      strategic: 92
+    }
   },
   {
     id: 'hpwwph21',
@@ -64,8 +79,13 @@ export const MOCK_VIPS: VIPUser[] = [
       "希望大家理解金金，不要因為我的事而對金金有所偏見。"
     ],
     bio: "35歲深情大哥哥。情感極度投入的客戶。將平台互動視為真實情感關係，容易受情緒波動影響。需要大量的關注與情感確認，對主播有極高的忠誠度與依賴感。",
-    avatarUrl: "https://image.pollinations.ai/prompt/3D-render-Pixar-style-cute-vinyl-toy-of-a-sensitive-young-man-blue-hoodie-studio-lighting-solid-background?width=600&height=600&nologo=true&seed=3333",
-    avatarDescription: "3D stylized vinyl toy character of a sensitive young man, wearing a blue hoodie with the hood up, high-quality 3D render, clay-like texture, rounded and smooth features, large expressive eyes showing vulnerability, soft studio lighting, solid neutral light gray background.",
+    personalityScores: {
+      loyalty: 95,
+      spending: 60,
+      engagement: 88,
+      emotionality: 98,
+      strategic: 15
+    }
   },
   {
     id: 'sky537',
@@ -82,8 +102,13 @@ export const MOCK_VIPS: VIPUser[] = [
       "真的平台線下活動第一次看到參加人數破百越來越熱鬧了。"
     ],
     bio: "42歲熱血大叔。線下活動愛好者。熱衷於參加官方同樂會，對平台社群活動有極高參與度。消費力穩定，喜歡與主播在現實活動中互動。",
-    avatarUrl: "https://image.pollinations.ai/prompt/3D-render-Pixar-style-cute-vinyl-toy-of-an-energetic-man-red-cap-varsity-jacket-studio-lighting-solid-background?width=600&height=600&nologo=true&seed=4444",
-    avatarDescription: "3D stylized vinyl toy character of an energetic fan, wearing a vibrant red baseball cap and a sporty jacket, high-quality 3D render, clay-like texture, rounded and smooth features, large excited eyes, bright studio lighting, solid neutral light gray background.",
+    personalityScores: {
+      loyalty: 80,
+      spending: 55,
+      engagement: 92,
+      emotionality: 45,
+      strategic: 60
+    }
   },
   {
     id: 'q888888qq',
@@ -100,7 +125,12 @@ export const MOCK_VIPS: VIPUser[] = [
       "我剛上線而已，你變態喔。"
     ],
     bio: "38歲隨興大哥哥。社交目的明確的客戶。喜歡約主播線下聚餐，溝通風格幽默且隨興。對特定食物有強烈偏好（如：不吃火鍋），重視線下的真實社交體驗。",
-    avatarUrl: "https://image.pollinations.ai/prompt/3D-render-Pixar-style-cute-vinyl-toy-of-a-cool-guy-bucket-hat-white-tee-studio-lighting-solid-background?width=600&height=600&nologo=true&seed=5555",
-    avatarDescription: "3D stylized vinyl toy character of a cool casual guy, wearing a stylish bucket hat and a simple white tee, high-quality 3D render, clay-like texture, rounded and smooth features, large confident eyes, clean studio lighting, solid neutral light gray background.",
+    personalityScores: {
+      loyalty: 50,
+      spending: 45,
+      engagement: 70,
+      emotionality: 30,
+      strategic: 40
+    }
   }
 ];
