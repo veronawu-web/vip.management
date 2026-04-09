@@ -174,19 +174,19 @@ export default function App() {
   return (
     <div className="min-h-screen pb-20">
       {/* Header */}
-      <header className="sticky top-0 z-40 bg-white/70 backdrop-blur-xl border-b border-indigo-50 px-6 py-4">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-lg shadow-indigo-200">
-              <Users size={24} />
+      <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-indigo-50 px-4 py-3 md:px-6 md:py-4">
+        <div className="max-w-7xl mx-auto flex flex-col gap-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-lg shadow-indigo-200 shrink-0">
+                <Users size={24} />
+              </div>
+              <div className="min-w-0">
+                <h1 className="text-lg md:text-xl font-bold tracking-tight text-gray-900 truncate">VIP Insights Directory</h1>
+                <p className="text-[10px] md:text-xs text-gray-500 font-medium uppercase tracking-wider truncate">Internal Access Only</p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-xl font-bold tracking-tight text-gray-900">VIP Insights Directory</h1>
-              <p className="text-xs text-gray-500 font-medium uppercase tracking-wider">Internal Company Access Only</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3">
+            
             <button 
               onClick={async () => {
                 setIsBatchGenerating(true);
@@ -196,21 +196,23 @@ export default function App() {
                 setIsBatchGenerating(false);
               }}
               disabled={!!isGenerating || isBatchGenerating}
-              className="hidden md:flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-300 text-white text-xs font-bold rounded-xl shadow-lg shadow-indigo-100 transition-all active:scale-95"
+              className="md:flex items-center gap-2 px-3 py-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-300 text-white text-[10px] md:text-xs font-bold rounded-xl shadow-lg shadow-indigo-100 transition-all active:scale-95 shrink-0"
             >
               <Sparkles size={14} className={cn((isGenerating || isBatchGenerating) && "animate-spin")} />
-              {(isGenerating || isBatchGenerating) ? 'AI 批量分析中...' : '一鍵生成所有 AI 深度分析'}
+              <span className="hidden sm:inline">{(isGenerating || isBatchGenerating) ? 'AI 批量分析中...' : '一鍵生成所有 AI 深度分析'}</span>
+              <span className="sm:hidden">{(isGenerating || isBatchGenerating) ? '分析中' : '一鍵分析'}</span>
             </button>
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-              <input 
-                type="text" 
-                placeholder="搜尋 VIP 姓名或特質..."
-                className="w-full pl-10 pr-4 py-2.5 bg-gray-100/50 border-transparent focus:bg-white focus:border-indigo-200 focus:ring-4 focus:ring-indigo-50 rounded-2xl transition-all outline-none text-sm"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
+          </div>
+
+          <div className="relative w-full">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+            <input 
+              type="text" 
+              placeholder="搜尋 VIP 姓名或特質..."
+              className="w-full pl-10 pr-4 py-2.5 bg-gray-100/50 border-transparent focus:bg-white focus:border-indigo-200 focus:ring-4 focus:ring-indigo-50 rounded-2xl transition-all outline-none text-sm"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
           </div>
         </div>
       </header>
@@ -284,9 +286,9 @@ function PersonalityRadar({ scores, color }: { scores: VIPUser['personalityScore
   return (
     <div className="w-full h-full">
       <ResponsiveContainer width="100%" height="100%">
-        <RadarChart cx="50%" cy="50%" outerRadius="70%" data={data}>
+        <RadarChart cx="50%" cy="50%" outerRadius="65%" data={data}>
           <PolarGrid stroke="#E2E8F0" />
-          <PolarAngleAxis dataKey="subject" tick={{ fill: '#94A3B8', fontSize: 10, fontWeight: 600 }} />
+          <PolarAngleAxis dataKey="subject" tick={{ fill: '#94A3B8', fontSize: 9, fontWeight: 600 }} />
           <Radar
             name="Personality"
             dataKey="A"
@@ -396,22 +398,30 @@ function VIPDetail({
   isGenerating: boolean;
 }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-6">
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={onClose}
-        className="absolute inset-0 bg-gray-900/40 backdrop-blur-sm"
+        className="absolute inset-0 bg-gray-900/60 backdrop-blur-sm"
       />
       
       <motion.div 
         layoutId={`card-${vip.id}`}
-        className="relative w-full max-w-4xl max-h-[90vh] bg-white rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col md:flex-row"
+        className="relative w-full max-w-4xl h-[92vh] sm:h-auto sm:max-h-[90vh] bg-white rounded-t-[2.5rem] sm:rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col md:flex-row"
       >
+        {/* Mobile Close Button */}
+        <button 
+          onClick={onClose}
+          className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md shadow-lg flex items-center justify-center text-gray-500 sm:hidden"
+        >
+          <X size={20} />
+        </button>
+
         {/* Left Side: Personality Chart & Stats */}
-        <div className="w-full md:w-2/5 bg-gray-50 p-8 flex flex-col items-center">
-          <div className="relative w-full aspect-square rounded-3xl bg-white shadow-xl shadow-indigo-100/50 overflow-hidden mb-8 flex items-center justify-center border border-indigo-50">
+        <div className="w-full md:w-2/5 bg-gray-50 p-6 sm:p-8 flex flex-col items-center overflow-y-auto sm:overflow-visible shrink-0">
+          <div className="relative w-full aspect-square rounded-3xl bg-white shadow-xl shadow-indigo-100/50 overflow-hidden mb-6 sm:mb-8 flex items-center justify-center border border-indigo-50 shrink-0">
             {vip.personalityScores ? (
               <div className="w-full h-full p-4">
                 <PersonalityRadar 
@@ -468,28 +478,30 @@ function VIPDetail({
         </div>
 
         {/* Right Side: Details & Conversations */}
-        <div className="flex-1 p-8 md:p-12 overflow-y-auto">
+        <div className="flex-1 p-6 sm:p-12 overflow-y-auto bg-white">
           <button 
             onClick={onClose}
-            className="absolute top-8 right-8 w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-500 transition-colors"
+            className="hidden sm:flex absolute top-8 right-8 w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 items-center justify-center text-gray-500 transition-colors"
           >
             <X size={20} />
           </button>
 
           <div className="mb-8">
-            <div className="flex items-center gap-3 mb-2">
-              <h2 className="text-3xl font-black text-gray-900 tracking-tight">{vip.name}</h2>
-              <span className="text-lg font-bold text-gray-400">{vip.age}歲</span>
-              <span className={cn("px-3 py-1 rounded-full text-[10px] font-black text-white uppercase tracking-widest", 
-                vip.level === 'Diamond' ? 'vip-gradient-diamond' : 
-                vip.level === 'Platinum' ? 'vip-gradient-platinum' : 'vip-gradient-gold'
-              )}>
-                {vip.level}
-              </span>
+            <div className="flex flex-wrap items-center gap-3 mb-3">
+              <h2 className="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">{vip.name}</h2>
+              <div className="flex items-center gap-2">
+                <span className="text-base sm:text-lg font-bold text-gray-400">{vip.age}歲</span>
+                <span className={cn("px-3 py-1 rounded-full text-[10px] font-black text-white uppercase tracking-widest", 
+                  vip.level === 'Diamond' ? 'vip-gradient-diamond' : 
+                  vip.level === 'Platinum' ? 'vip-gradient-platinum' : 'vip-gradient-gold'
+                )}>
+                  {vip.level}
+                </span>
+              </div>
             </div>
             <div className="flex flex-wrap gap-2">
               {vip.personalityTraits.map((trait, i) => (
-                <span key={i} className="px-3 py-1 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold">
+                <span key={i} className="px-3 py-1 rounded-full bg-indigo-50 text-indigo-600 text-[10px] sm:text-xs font-bold">
                   {trait}
                 </span>
               ))}
@@ -497,7 +509,7 @@ function VIPDetail({
             <button 
               onClick={onGenerate}
               disabled={isGenerating}
-              className="mt-4 flex items-center gap-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-300 text-white text-xs font-bold rounded-xl shadow-lg shadow-indigo-100 transition-all active:scale-95"
+              className="mt-6 w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-300 text-white text-xs font-bold rounded-2xl shadow-lg shadow-indigo-100 transition-all active:scale-95"
             >
               <RefreshCw size={14} className={cn(isGenerating && "animate-spin")} />
               {isGenerating ? 'AI 分析中...' : '重新生成 AI 深度分析'}
