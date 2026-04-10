@@ -25,38 +25,36 @@ export const MOCK_VIPS: VIPUser[] = [
   {
     id: 'jmarx5168',
     name: 'jmarx5168',
-    age: 48,
+    age: 42,
     level: 'Diamond',
     totalSpending: 52000000, // Updated based on millions in records
-    lastActive: '2026-04-08',
-    personalityTraits: ['支配型', '高期望', '策略性', '直言不諱', '宣洩型'],
+    lastActive: '2026-04-10',
+    personalityTraits: ['極致美學', '契約精神', '支配型', '高期望', '溫柔導師'],
     conversationSnippets: [
-      "因為我付了錢，懂？",
-      "錢我多的是，妳算什麼咖？",
-      "妳不自以為，就覺得全世界都要聽你的",
-      "我討厭妳還幫妳？不主動找我這樣對嗎？",
+      "採用半開放式的超跑儀表板輪廓，指針停留在轉速紅線區（Redline）邊緣，象徵即使身為過客，也擁有極致。",
+      "我對平台的支持已經到了傾家蕩產的地步了，你們有沒有工作可以讓我去打工？我好窮。",
+      "一百等的帳號需要大量資金來撐，希望福利可以與時並進。",
       "這筆一對一的約定是 3/9 達成的，至今已經過了 12 天都沒有履行... 我已經請客服介入處理退還點數",
-      "內內不太理我了，有點難解的誤會",
-      "我撐起她業績，而且遙遙領先榜二，所以我不太懂為什麼她封鎖我"
+      "妳說過了啊，我收到了，謝謝啦！我就喜歡看美美的妳，哪怕是一生只有短暫幾次的機會，吾願足矣。",
+      "我投入了大量的資金和心血，沒有要求任何回報，卻遭致冷暴力和鄙視言詞，我無法接受。"
     ],
     favoriteStreamers: [
-      { name: 'neinei_chen', spending: 23715334, status: '鬧翻/封鎖中' },
-      { name: '_xiaokui.', spending: 7562167 },
-      { name: 'milk_xoxo', spending: 6052028 },
-      { name: 'lovekikii', spending: 5193846 },
-      { name: 'stellajs', spending: 4286795 },
+      { name: 'neinei_chen', spending: 23715334, status: '鬧翻/申訴中' },
+      { name: 'starry417', spending: 1250000, status: '極度欣賞/守護中' },
+      { name: '凱希Cathy', spending: 954440, status: '誠信糾紛/投訴中' },
+      { name: '_xiaokui.', spending: 7562167, status: '穩定支持' },
       { name: 'quinniee', spending: 523010, status: '互動頻繁' }
     ],
-    birthday: '1978-05-12',
-    zodiac: '金牛座',
+    birthday: '1983-12-22',
+    zodiac: '摩羯座',
     bloodType: 'O型',
-    bio: "48歲頂級大戶。極度重視「契約精神」與「對等尊重」。近期因高額消費（30萬鑽1對1）未被履行而與頭號主播 neinei_chen 爆發嚴重衝突並遭封鎖。目前處於情感空窗與焦慮轉移期，頻繁向其他主播（如 stellajs, chinchin1010）訴苦，尋求心理平衡。",
+    bio: "42歲極致型大戶。崇尚「紅線區」美學，追求極限與存在感。極度重視契約精神與對等尊重，對不誠信的主播（如 neinei, Cathy）會展現冷酷的審判者姿態；但對真誠的主播（如 starry417）則展現溫柔導師的一面，願意傾力守護。近期因車禍與100等福利延遲，情緒處於高度敏感期。",
     personalityScores: {
-      loyalty: 45, // 因鬧翻大幅下降
+      loyalty: 65,
       spending: 99,
-      engagement: 85,
-      emotionality: 70, // 近期情緒波動大
-      strategic: 80
+      engagement: 90,
+      emotionality: 75,
+      strategic: 85
     }
   },
   {
