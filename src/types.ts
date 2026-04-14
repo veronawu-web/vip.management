@@ -47,10 +47,8 @@ export const MOCK_VIPS: VIPUser[] = [
       { name: '_xiaokui.', spending: 7562167, status: '穩定支持' },
       { name: 'quinniee', spending: 523010, status: '互動頻繁' }
     ],
-    birthday: '1983-12-22',
-    zodiac: '摩羯座',
-    bloodType: 'O型',
     bio: "42歲極致型大戶。崇尚「紅線區」美學，追求極限與存在感。極度重視契約精神與對等尊重，對不誠信的主播（如 neinei, Cathy）會展現冷酷的審判者姿態；但對真誠的主播（如 starry417）則展現溫柔導師的一面，願意傾力守護。近期因車禍與100等福利延遲，情緒處於高度敏感期。",
+    birthday: '1983-12-22',
     personalityScores: {
       loyalty: 65,
       spending: 99,
@@ -83,9 +81,6 @@ export const MOCK_VIPS: VIPUser[] = [
       { name: '_xiaokui.', spending: 77791, status: '一般支持' }
     ],
     bio: "52歲資深大叔。自 2019-10-18 加入平台的資深玩家。性格溫暖且具備分析頭腦，常扮演主播的「軍師」角色。消費模式呈現「一主多從」，對核心主播 yuansi9551429 投入超過 800 萬鑽石，同時也廣泛支持數百位主播，是平台極具影響力的意見領袖。",
-    birthday: '1974-11-20',
-    zodiac: '天蠍座',
-    bloodType: 'A型',
     personalityScores: {
       loyalty: 90,
       spending: 85,
@@ -118,8 +113,6 @@ export const MOCK_VIPS: VIPUser[] = [
     ],
     bio: "28歲落魄公子哥。1997-07-10生，曾是家境優渥的工廠小開，參加過CEO午餐。因家裡欠債現需工作還債，等級從全盛期掉到LV.39。情感經歷坎坷，曾與nitavsvs有過一段深刻但以爭吵收場的關係，目前與chinchin1010維持私下關係，近期亦與belene.頻繁聯絡。",
     birthday: '1997-07-10',
-    zodiac: '巨蟹座',
-    bloodType: 'B型',
     personalityScores: {
       loyalty: 85,
       spending: 50, // 因家境變故下降
@@ -152,9 +145,6 @@ export const MOCK_VIPS: VIPUser[] = [
       { name: 'mollyflower', spending: 416753, status: '穩定互動' }
     ],
     bio: "42歲和善大叔。線下活動的靈魂人物，每次參加活動都會貼心地準備大量小禮物送給主播與工作人員。性格極其溫和且非常好溝通。消費模式呈現「多點開花」，對核心主播 sexylisaw 投入超過 200 萬鑽石，是官方與主播公認的暖男型 VIP。",
-    birthday: '1984-08-05',
-    zodiac: '獅子座',
-    bloodType: 'AB型',
     personalityScores: {
       loyalty: 85,
       spending: 55,
@@ -187,9 +177,6 @@ export const MOCK_VIPS: VIPUser[] = [
       { name: 'nesu_cute', spending: 220768, status: '穩定互動' }
     ],
     bio: "38歲隨興大哥哥。自 2022-03-12 加入平台的社交型 VIP。性格直率且幽默，對特定美食（如橘色火鍋）有強烈偏好。消費模式極度集中，對核心主播 mochi_chi 投入近 2000 萬鑽石，展現出驚人的單點忠誠度。目前等級為 LV.80。",
-    birthday: '1988-12-25',
-    zodiac: '摩羯座',
-    bloodType: 'O型',
     personalityScores: {
       loyalty: 95, // 因對單一主播極度集中而上調
       spending: 85, // 根據千萬級消費上調
