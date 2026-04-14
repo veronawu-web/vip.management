@@ -133,26 +133,34 @@ export const MOCK_VIPS: VIPUser[] = [
     name: 'sky537',
     age: 42,
     level: 'Platinum',
-    numericLevel: 85,
-    totalSpending: 950000,
-    lastActive: '2026-04-07',
-    personalityTraits: ['活動導向', '熱情', '慷慨', '計畫型'],
+    numericLevel: 40,
+    totalSpending: 8500000, // Updated based on detailed gift and chat records
+    lastActive: '2026-04-14',
+    personalityTraits: ['和善大叔', '線下暖男', '慷慨', '好說話'],
     conversationSnippets: [
       "也要感謝🍬🍬能陪我一起參加官方活動。",
       "嘿嘿帶主播去同樂會免刷💎福利還有嗎？",
       "剩下30等的名牌囉，四月要休息一下卡已經刷爆了。",
       "真的平台線下活動第一次看到參加人數破百越來越熱鬧了。"
     ],
-    bio: "42歲熱血大叔。線下活動愛好者。熱衷於參加官方同樂會，對平台社群活動有極高參與度。消費力穩定，喜歡與主播在現實活動中互動。",
+    favoriteStreamers: [
+      { name: 'sexylisaw', spending: 2248344, status: '重點守護' },
+      { name: 'suunny950', spending: 1191044, status: '重點支持' },
+      { name: 'belene.', spending: 1025901, status: '重點支持' },
+      { name: 'sexyvanessa', spending: 610731, status: '穩定互動' },
+      { name: 'sugercathy', spending: 533008, status: '穩定互動' },
+      { name: 'mollyflower', spending: 416753, status: '穩定互動' }
+    ],
+    bio: "42歲和善大叔。線下活動的靈魂人物，每次參加活動都會貼心地準備大量小禮物送給主播與工作人員。性格極其溫和且非常好溝通。消費模式呈現「多點開花」，對核心主播 sexylisaw 投入超過 200 萬鑽石，是官方與主播公認的暖男型 VIP。",
     birthday: '1984-08-05',
     zodiac: '獅子座',
     bloodType: 'AB型',
     personalityScores: {
-      loyalty: 80,
+      loyalty: 85,
       spending: 55,
-      engagement: 92,
-      emotionality: 45,
-      strategic: 60
+      engagement: 98,
+      emotionality: 60,
+      strategic: 40
     }
   },
   {
@@ -160,9 +168,9 @@ export const MOCK_VIPS: VIPUser[] = [
     name: 'q888888qq',
     age: 38,
     level: 'Gold',
-    numericLevel: 70,
-    totalSpending: 650000,
-    lastActive: '2026-04-05',
+    numericLevel: 80,
+    totalSpending: 23500000, // Updated based on detailed gift and chat records
+    lastActive: '2026-04-14',
     personalityTraits: ['隨興', '社交型', '美食家', '直率'],
     conversationSnippets: [
       "約個時間吃飯啊，下禮拜二三四你挑一天。",
@@ -170,16 +178,24 @@ export const MOCK_VIPS: VIPUser[] = [
       "火鍋是邪教，不吃。",
       "我剛上線而已，你變態喔。"
     ],
-    bio: "38歲隨興大哥哥。社交目的明確的客戶。喜歡約主播線下聚餐，溝通風格幽默且隨興。對特定食物有強烈偏好（如：不吃火鍋），重視線下的真實社交體驗。",
+    favoriteStreamers: [
+      { name: 'mochi_chi', spending: 19910593, status: '絕對守護' },
+      { name: 'sun_chu', spending: 932784, status: '重點支持' },
+      { name: 'chinchin1010', spending: 944632, status: '重點支持' },
+      { name: 'flower_bb', spending: 585603, status: '穩定互動' },
+      { name: 'colavsvs', spending: 245469, status: '穩定互動' },
+      { name: 'nesu_cute', spending: 220768, status: '穩定互動' }
+    ],
+    bio: "38歲隨興大哥哥。自 2022-03-12 加入平台的社交型 VIP。性格直率且幽默，對特定美食（如橘色火鍋）有強烈偏好。消費模式極度集中，對核心主播 mochi_chi 投入近 2000 萬鑽石，展現出驚人的單點忠誠度。目前等級為 LV.80。",
     birthday: '1988-12-25',
     zodiac: '摩羯座',
     bloodType: 'O型',
     personalityScores: {
-      loyalty: 50,
-      spending: 45,
-      engagement: 70,
-      emotionality: 30,
-      strategic: 40
+      loyalty: 95, // 因對單一主播極度集中而上調
+      spending: 85, // 根據千萬級消費上調
+      engagement: 75,
+      emotionality: 40,
+      strategic: 50
     }
   }
 ];
