@@ -3,6 +3,7 @@ export interface VIPUser {
   name: string;
   age: number;
   level: 'Diamond' | 'Platinum' | 'Gold';
+  numericLevel?: number;
   totalSpending: number;
   lastActive: string;
   personalityTraits: string[];
@@ -27,6 +28,7 @@ export const MOCK_VIPS: VIPUser[] = [
     name: 'jmarx5168',
     age: 42,
     level: 'Diamond',
+    numericLevel: 100,
     totalSpending: 52000000, // Updated based on millions in records
     lastActive: '2026-04-10',
     personalityTraits: ['極致美學', '契約精神', '支配型', '高期望', '溫柔導師'],
@@ -62,16 +64,25 @@ export const MOCK_VIPS: VIPUser[] = [
     name: 'aa6655891',
     age: 52,
     level: 'Diamond',
-    totalSpending: 3800000,
-    lastActive: '2026-04-07',
-    personalityTraits: ['導師型', '分析型', '支持型', '保護型'],
+    numericLevel: 52,
+    totalSpending: 12580000, // Updated based on detailed gift records
+    lastActive: '2026-04-14',
+    personalityTraits: ['導師型', '分析型', '支持型', '廣泛播種'],
     conversationSnippets: [
       "你今天的努力沒有白費，每次要求自己的業績都有到，我其實很高興。",
       "你是我的軍師，不管結果如何，我都會去面對。",
       "我看不得妳票賣不好。",
       "新的自媒體方案你有打算要怎麼做嗎？"
     ],
-    bio: "52歲資深大叔。Level 100 資深玩家。性格溫暖且具備分析頭腦，常扮演主播的「軍師」角色，協助規劃業績與應對策略。非常看重主播的成長與努力。",
+    favoriteStreamers: [
+      { name: 'yuansi9551429', spending: 8400751, status: '核心守護' },
+      { name: 'athena_77', spending: 604032, status: '重點支持' },
+      { name: 'pufferfish0307', spending: 393419, status: '穩定互動' },
+      { name: 'yang_you', spending: 352341, status: '穩定互動' },
+      { name: 'yu_uuuuu', spending: 229265, status: '穩定互動' },
+      { name: '_xiaokui.', spending: 77791, status: '一般支持' }
+    ],
+    bio: "52歲資深大叔。自 2019-10-18 加入平台的資深玩家。性格溫暖且具備分析頭腦，常扮演主播的「軍師」角色。消費模式呈現「一主多從」，對核心主播 yuansi9551429 投入超過 800 萬鑽石，同時也廣泛支持數百位主播，是平台極具影響力的意見領袖。",
     birthday: '1974-11-20',
     zodiac: '天蠍座',
     bloodType: 'A型',
@@ -88,6 +99,7 @@ export const MOCK_VIPS: VIPUser[] = [
     name: 'hpwwph21 (21)',
     age: 35,
     level: 'Platinum',
+    numericLevel: 90,
     totalSpending: 1200000,
     lastActive: '2026-04-06',
     personalityTraits: ['情感豐富', '投入', '脆弱', '強烈'],
@@ -114,6 +126,7 @@ export const MOCK_VIPS: VIPUser[] = [
     name: 'sky537',
     age: 42,
     level: 'Platinum',
+    numericLevel: 85,
     totalSpending: 950000,
     lastActive: '2026-04-07',
     personalityTraits: ['活動導向', '熱情', '慷慨', '計畫型'],
@@ -140,6 +153,7 @@ export const MOCK_VIPS: VIPUser[] = [
     name: 'q888888qq',
     age: 38,
     level: 'Gold',
+    numericLevel: 70,
     totalSpending: 650000,
     lastActive: '2026-04-05',
     personalityTraits: ['隨興', '社交型', '美食家', '直率'],

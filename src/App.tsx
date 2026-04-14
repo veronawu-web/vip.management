@@ -334,8 +334,12 @@ function VIPCard({
       onClick={onClick}
     >
       {/* Level Badge */}
-      <div className={cn("absolute top-5 right-5 px-3 py-1 rounded-full text-[10px] font-bold text-white uppercase tracking-widest shadow-sm z-10", levelGradient)}>
-        {vip.level}
+      <div className="absolute top-5 right-5 z-10">
+        {vip.numericLevel && (
+          <div className={cn("px-3 py-1 rounded-full text-[10px] font-black text-white uppercase tracking-widest shadow-sm", levelGradient)}>
+            LV.{vip.numericLevel}
+          </div>
+        )}
       </div>
 
       {/* Personality Visualization Section */}
@@ -464,16 +468,6 @@ function VIPDetail({
               </div>
               <span className="text-lg font-bold text-gray-900">${vip.totalSpending.toLocaleString()}</span>
             </div>
-
-            <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-gray-100">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
-                  <Calendar size={18} />
-                </div>
-                <span className="text-sm font-medium text-gray-500">最後活躍日期</span>
-              </div>
-              <span className="text-sm font-bold text-gray-900">{vip.lastActive}</span>
-            </div>
           </div>
         </div>
 
@@ -491,12 +485,16 @@ function VIPDetail({
               <h2 className="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">{vip.name}</h2>
               <div className="flex items-center gap-2">
                 <span className="text-base sm:text-lg font-bold text-gray-400">{vip.age}歲</span>
-                <span className={cn("px-3 py-1 rounded-full text-[10px] font-black text-white uppercase tracking-widest", 
-                  vip.level === 'Diamond' ? 'vip-gradient-diamond' : 
-                  vip.level === 'Platinum' ? 'vip-gradient-platinum' : 'vip-gradient-gold'
-                )}>
-                  {vip.level}
-                </span>
+                <div className="flex items-center gap-1.5">
+                  {vip.numericLevel && (
+                    <span className={cn("px-3 py-1 rounded-full text-[10px] font-black text-white uppercase tracking-widest shadow-sm", 
+                      vip.level === 'Diamond' ? 'vip-gradient-diamond' : 
+                      vip.level === 'Platinum' ? 'vip-gradient-platinum' : 'vip-gradient-gold'
+                    )}>
+                      LV.{vip.numericLevel}
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
 
