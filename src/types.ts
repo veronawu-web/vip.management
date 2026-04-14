@@ -97,28 +97,35 @@ export const MOCK_VIPS: VIPUser[] = [
   {
     id: 'hpwwph21',
     name: 'hpwwph21 (21)',
-    age: 35,
+    age: 28,
     level: 'Platinum',
-    numericLevel: 90,
-    totalSpending: 1200000,
-    lastActive: '2026-04-06',
-    personalityTraits: ['情感豐富', '投入', '脆弱', '強烈'],
+    numericLevel: 39,
+    totalSpending: 52000000, // Estimated total based on records
+    lastActive: '2026-04-14',
+    personalityTraits: ['落魄公子哥', 'CEO午餐成員', '深情', '脆弱'],
     conversationSnippets: [
       "我可以放棄一切，就是不能失去你。",
       "我真的沒有你...",
       "我承認我幼稚我白目，但我一直以來都很珍惜。",
       "希望大家理解金金，不要因為我的事而對金金有所偏見。"
     ],
-    bio: "35歲深情大哥哥。情感極度投入的客戶。將平台互動視為真實情感關係，容易受情緒波動影響。需要大量的關注與情感確認，對主播有極高的忠誠度與依賴感。",
-    birthday: '1991-02-14',
-    zodiac: '水瓶座',
+    favoriteStreamers: [
+      { name: 'chinchin1010', spending: 13655111, status: '現任/私下關係' },
+      { name: 'nitavsvs', spending: 15157846, status: '前任/已斷聯' },
+      { name: 'stellajs', spending: 5336058, status: '穩定支持' },
+      { name: 'honeyhot', spending: 3379276, status: '穩定支持' },
+      { name: 'belene.', spending: 1092804, status: '近期聯絡' }
+    ],
+    bio: "28歲落魄公子哥。1997-07-10生，曾是家境優渥的工廠小開，參加過CEO午餐。因家裡欠債現需工作還債，等級從全盛期掉到LV.39。情感經歷坎坷，曾與nitavsvs有過一段深刻但以爭吵收場的關係，目前與chinchin1010維持私下關係，近期亦與belene.頻繁聯絡。",
+    birthday: '1997-07-10',
+    zodiac: '巨蟹座',
     bloodType: 'B型',
     personalityScores: {
-      loyalty: 95,
-      spending: 60,
-      engagement: 88,
+      loyalty: 85,
+      spending: 50, // 因家境變故下降
+      engagement: 95,
       emotionality: 98,
-      strategic: 15
+      strategic: 20
     }
   },
   {
