@@ -413,18 +413,18 @@ function VIPDetail({
       
       <motion.div 
         layoutId={`card-${vip.id}`}
-        className="relative w-full max-w-4xl h-[92vh] sm:h-auto sm:max-h-[90vh] bg-white rounded-t-[2.5rem] sm:rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col md:flex-row"
+        className="relative w-full max-w-5xl h-[92vh] md:h-[85vh] bg-white rounded-t-[2.5rem] md:rounded-[3rem] shadow-2xl overflow-y-auto md:overflow-hidden flex flex-col md:flex-row"
       >
         {/* Mobile Close Button */}
         <button 
           onClick={onClose}
-          className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md shadow-lg flex items-center justify-center text-gray-500 sm:hidden"
+          className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-white/80 backdrop-blur-md shadow-lg flex items-center justify-center text-gray-500 md:hidden"
         >
           <X size={20} />
         </button>
 
         {/* Left Side: Personality Chart & Stats */}
-        <div className="w-full md:w-2/5 bg-gray-50 p-6 sm:p-8 flex flex-col items-center overflow-y-auto sm:overflow-visible shrink-0">
+        <div className="w-full md:w-[380px] bg-gray-50 p-6 sm:p-10 flex flex-col items-center md:overflow-y-auto border-b md:border-b-0 md:border-r border-indigo-50 shrink-0">
           <div className="relative w-full aspect-square rounded-3xl bg-white shadow-xl shadow-indigo-100/50 overflow-hidden mb-6 sm:mb-8 flex items-center justify-center border border-indigo-50 shrink-0">
             {vip.personalityScores ? (
               <div className="w-full h-full p-4">
@@ -472,10 +472,10 @@ function VIPDetail({
         </div>
 
         {/* Right Side: Details & Conversations */}
-        <div className="flex-1 p-6 sm:p-12 overflow-y-auto bg-white">
+        <div className="flex-1 p-6 sm:p-12 md:overflow-y-auto bg-white relative">
           <button 
             onClick={onClose}
-            className="hidden sm:flex absolute top-8 right-8 w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 items-center justify-center text-gray-500 transition-colors"
+            className="hidden md:flex sticky top-0 float-right -mr-4 -mt-4 w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 items-center justify-center text-gray-500 transition-colors z-10"
           >
             <X size={20} />
           </button>
